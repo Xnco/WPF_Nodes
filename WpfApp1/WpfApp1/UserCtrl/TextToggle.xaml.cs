@@ -20,7 +20,7 @@ namespace WpfApp1.UserCtrl
     /// </summary>
     public partial class TextToggle : UserControl
     {
-        public StackPanel parent;
+        public Panel parent;
 
         private bool isOn;
 
@@ -73,6 +73,34 @@ namespace WpfApp1.UserCtrl
             //ActualHeight为元素的实际高度，与控件实际高度Height不同。
             //TextBlock tmpBox = sender as TextBlock;
             //tmpBox.Height = tmpBox.ActualHeight;
+        }
+
+        // 点击文本出现输入框
+        private void Toggle_Text_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock self = sender as TextBlock;
+            self.Visibility = Visibility.Hidden;
+
+            this.Toggle_TextBox.Text = self.Text;
+            this.Toggle_TextBox.Visibility = Visibility.Visible;
+            this.Toggle_TextBox.Focus();
+        }
+
+        // 离开输入框出现文本
+        private void Toggle_TextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            TextBox self = sender as TextBox;
+            self.Visibility = Visibility.Hidden;
+
+            this.Toggle_Text.Visibility = Visibility.Visible;
+            this.Toggle_Text.Text = self.Text;
+        }
+
+        // 输入框文字改变的时候
+        private void Toggle_TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox self = sender as TextBox;
+            this.Height = self.ExtentHeight + 10;  // 整体大小 = 可视区域大小 + 10
         }
     }
 }

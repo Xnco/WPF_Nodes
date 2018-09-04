@@ -4,28 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.UserCtrl"
-             mc:Ignorable="d" Width="165" Height="29"
+             mc:Ignorable="d" Width="164" Height="30"
+             MinHeight="30"
              >
     <Grid Name="Toggle" Margin="0,0,0,0" >
+
         <Button Name="Toggle_Button" Click="OnClickToggle_Button" 
                 HorizontalAlignment="Left" VerticalAlignment="Top"
                 Width="25" Height="25" Margin="0,2,0,0">
-            <Image Name="Toggle_Image" Height="15" Width="15" Visibility="Hidden"
-                   Source="../Images/btn-7.png"/>
+            <Image Name="Toggle_Image" Height="15" Width="15" Visibility="Hidden" Source="../Images/btn-7.png"/>
         </Button>
 
-        <TextBox Name="Toggle_Text" Text="任务"
+        <TextBlock Name="Toggle_Text" TextWrapping="Wrap" Text="TextBlock" Margin="30,5,22,6" MouseLeftButtonDown="Toggle_Text_MouseLeftButtonDown"/>
+
+        <TextBox Name="Toggle_TextBox" Text="任务"
                  Margin="25,2,22,2"
-                 
-                 LayoutUpdated="Toggle_Text_LayoutUpdated"/>
+                 TextWrapping="Wrap"  
+                 LayoutUpdated="Toggle_Text_LayoutUpdated"
+                 LostKeyboardFocus="Toggle_TextBox_LostKeyboardFocus"
+                 TextChanged="Toggle_TextBox_TextChanged"
+                 Visibility="Hidden"/>
 
         <Button Name="Toggle_Delete" Content="-" 
-                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4.5,0,0"
+                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,0,0"
                 Width="20" Height="20"
-                Click="OnClickToggle_Delete" />
-
-
-        <!--<TextBlock Name="Toggle_Text" TextWrapping="Wrap" Text="TextBlock" Margin="30,5,0,0"/>-->
-
+                Click="OnClickToggle_Delete" Grid.Column="1" />
     </Grid>
 </UserControl>

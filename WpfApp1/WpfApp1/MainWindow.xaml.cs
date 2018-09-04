@@ -30,9 +30,35 @@ namespace WpfApp1
         {
             // 新建一个文本开关
             TextToggle textToggle = new TextToggle();
-            textToggle.parent = this.MyStack;
+            textToggle.parent = this.MyList;
 
-            MyStack.Children.Add(textToggle);
+            MyList.Children.Add(textToggle);
+        }
+
+        // 集合Size变化
+        private void MyList_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            StackPanel self = sender as StackPanel;
+            if (this.Height < self.ActualHeight + 50)
+            {
+                this.Height = self.ActualHeight + 50; // 窗口高度 = 呈现的高度 + 50
+            }
+            //MessageBox.Show("高度" + self.ExtentHeight); 
+        }
+
+        // 功能暂定 - 右键退出
+        private void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show(this, "确定退出?", "退出便签?", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }
