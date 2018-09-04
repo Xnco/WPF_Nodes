@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.UserCtrl"
              mc:Ignorable="d" 
-             d:DesignHeight="25" d:DesignWidth="200"
-             Height="25" Width="200" MinHeight="25">
+             d:DesignHeight="36" d:DesignWidth="200"
+             Height="36" Width="208" MinHeight="36">
     <Grid Margin="0,0,0,0" MinHeight="25">
-        
-        <Button Name="Item_Button" Click="OnClickItem_Button"
+
+        <Button Name="Item_Button" Click="OnClickItem_Button" BorderBrush="White"
                 HorizontalAlignment="Left" VerticalAlignment="Top"
-                Width="20" Height="20" Margin="0,2.5,0,0"
+                Width="20" Height="20" Margin="5,6,0,0"
                 >
             <Button.Background>
                 <ImageBrush ImageSource="../Images/finishbg.png"></ImageBrush>
@@ -19,20 +19,31 @@
             <Image Name="Item_Image" Height="15" Width="15" Visibility="Hidden" Source="../Images/finish.png"/>
         </Button>
 
-        <TextBlock Name="Item_Text" TextWrapping="Wrap" Text="TextBlock" Margin="28,5,22,6" MouseLeftButtonDown="Item_Text_MouseLeftButtonDown"/>
+        <Border Margin="30,2,0,2" Background="White">
+            <!--<Border.Background>
+                <ImageBrush ImageSource="../Images/bigtitle.png"></ImageBrush>
+            </Border.Background>-->
+            <Grid>
+                <TextBlock Name="Item_Text" TextWrapping="Wrap" Text="TextBlock" Margin="0,5,26,6" MouseLeftButtonDown="Item_Text_MouseLeftButtonDown"/>
 
-        <TextBox Name="Item_TextBox" Text="任务"
+                <TextBox Name="Item_TextBox" Text="任务"
                  VerticalAlignment="Top"
-                 Margin="22,2,22,2"
+                 Margin="0,5,31,0"
                  MinHeight="25"
                  TextWrapping="Wrap"  
                  TextChanged="Item_TextBox_TextChanged"
                  LostKeyboardFocus="Item_TextBox_LostKeyboardFocus"
                  Visibility="Visible"/>
 
-        <Button Name="Item_Delete" Content="-" Background="OrangeRed"
-                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,2.5,0,0"
-                Width="20" Height="20"
-                Click="OnClickItem_Delete" Grid.Column="1" />
+                <Button Name="Item_Delete" Background="White" BorderBrush="White"
+                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0"
+                Width="16" Height="16"
+                Click="OnClickItem_Delete">
+                    <Image Source="/Images/delsmall.png" Width="9"></Image>
+                </Button>
+            </Grid>
+        </Border>
+
+
     </Grid>
 </UserControl>

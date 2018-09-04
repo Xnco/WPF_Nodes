@@ -4,35 +4,36 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.UserCtrl"
-             mc:Ignorable="d" Width="240" Height="30"
+             mc:Ignorable="d" Width="292" Height="30"
              MinHeight="30"
              >
     <Grid Name="Toggle" Margin="0,0,0,0" >
-        <Grid.Background>
-            <ImageBrush ImageSource="../Images/bigtitle.png"></ImageBrush>
-        </Grid.Background>
 
-        <Button Name="Open_Btn" Click="Open_Btn_Click"
-            HorizontalAlignment="Left" VerticalAlignment="Top" 
-            Width="25" Height="25" Margin="0,2,0,0"
-            >
-
-            <Image Name="Open_Image" Height="15" Width="15" Source="../Images/drop.png"/>
-        </Button>
-
-        <Button Name="Toggle_Button" Click="OnClickToggle_Button" 
+        <Button Name="Toggle_Button" Click="OnClickToggle_Button" BorderBrush="#FAFAFA"
                 HorizontalAlignment="Left" VerticalAlignment="Top"
-                Width="25" Height="25" Margin="25,2,0,0"
-               >
+                Width="16" Height="16" Margin="12,7,0,0"
+                >
             <Button.Background>
                 <ImageBrush ImageSource="../Images/finishbg.png"></ImageBrush>
             </Button.Background>
-            <Image Name="Toggle_Image" Height="15" Width="15" Visibility="Hidden" Source="../Images/finish.png"/>
+            <Image Name="Toggle_Image" Height="15" Width="15" Visibility="Hidden" Source="/Images/finish.png"/>
         </Button>
 
-        <TextBlock Name="Toggle_Text" TextWrapping="Wrap" Text="TextBlock" Margin="60,5,42,6" MouseLeftButtonDown="Toggle_Text_MouseLeftButtonDown"/>
+        <Border Margin="40,2,12,0" VerticalAlignment="Top" Background="White">
+            <!--<Border.Background>-->
+                <!--<ImageBrush ImageSource="../Images/bigtitle.png" Opacity="0.995" />-->
+            <!--</Border.Background>-->
+            <Grid >
 
-        <TextBox Name="Toggle_TextBox" Text="任务"
+                <Button Name="Open_Btn" Click="Open_Btn_Click" Background="White" BorderBrush="White"
+                HorizontalAlignment="Left" VerticalAlignment="Top" 
+                Width="16" Height="16" Margin="10,5,0,0" >
+                    <Image Name="Open_Image" Height="14" Width="7" Source="../Images/drop.png"/>
+                </Button>
+
+                <TextBlock Name="Toggle_Text" TextWrapping="Wrap" Text="TextBlock" Margin="31,5,46,6" MouseLeftButtonDown="Toggle_Text_MouseLeftButtonDown"/>
+
+                <TextBox Name="Toggle_TextBox" Text="任务"
                  VerticalAlignment="Top"
                  Margin="55,2,42,2"
                  TextWrapping="Wrap"  
@@ -41,15 +42,22 @@
                  LostKeyboardFocus="Toggle_TextBox_LostKeyboardFocus"
                  Visibility="Hidden"/>
 
-        <Button Name="Toggle_Delete" Content="-" Background="OrangeRed"
-                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,20,0"
-                Width="20" Height="20"
-                Click="OnClickToggle_Delete" />
-        
-        <Button Name="Toggle_Add" Content="+" Background="Green"
-                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,0,0"
-                Width="20" Height="20"
-                Click="Toggle_Add_Click" Focusable="False" />
+                <Button Name="Toggle_Delete" Background="White" BorderBrush="White"
+                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,30,0"
+                Width="16" Height="16"
+                Click="OnClickToggle_Delete" >
+                    <Image Source="/Images/delsmall.png" Width="9"></Image>
+                </Button>
+
+                <Button Name="Toggle_Add" Background="White" BorderBrush="White"
+                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,10,0"
+                Width="16" Height="16"
+                Click="Toggle_Add_Click" Focusable="False" >
+                    <Image Source="/Images/addtitle.png" Width="9" Height="9"></Image>
+                </Button>
+            </Grid>
+            
+        </Border>
 
         <StackPanel Name="ToggleList" Margin="0,0,0,0"
                     HorizontalAlignment="Right" VerticalAlignment="Bottom"

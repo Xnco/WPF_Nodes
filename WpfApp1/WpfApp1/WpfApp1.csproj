@@ -112,19 +112,45 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="Images\addsmalltitle.png" />
-    <Resource Include="Images\addtitle.png" />
-    <Resource Include="Images\Background.png" />
-    <Resource Include="Images\BigTitle.png" />
-    <Resource Include="Images\btnbg.png" />
-    <Resource Include="Images\delsmall.png" />
-    <Resource Include="Images\drop.png" />
-    <Resource Include="Images\Finish.png" />
-    <Resource Include="Images\FinishBG.png" />
-    <Resource Include="Images\handle.png" />
-    <Resource Include="Images\nav.png" />
-    <Resource Include="Images\smalltitle.png" />
-    <Resource Include="Images\verscroll.png" />
+    <Content Include="Images\addsmalltitle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\addtitle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\BigTitle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\btnbg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\delsmall.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\drop.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Finish.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\FinishBG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\handle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\nav.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\smalltitle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\verscroll.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
