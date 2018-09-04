@@ -32,6 +32,7 @@ namespace WpfApp1
             // 新建一个文本开关
             TextToggle textToggle = new TextToggle();
             textToggle.Toggle_Text.Text = "任务" + (MyList.Children.Count + 1);
+            textToggle.Toggle_TextBox.Focus();
             textToggle.parent = this.MyList;
 
             MyList.Children.Add(textToggle);

@@ -22,7 +22,7 @@
                  TextWrapping="Wrap"  
                  LayoutUpdated="Toggle_Text_LayoutUpdated"
                  TextChanged="Toggle_TextBox_TextChanged"
-                 
+                 LostKeyboardFocus="Toggle_TextBox_LostKeyboardFocus"
                  Visibility="Hidden"/>
 
         <Button Name="Toggle_Delete" Content="-" 

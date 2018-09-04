@@ -18,7 +18,7 @@
     Background="AliceBlue"
 >
     <Grid Name="main">
-        <ScrollViewer Margin="0,0,40,0" IsDeferredScrollingEnabled="True">
+        <ScrollViewer Margin="0,0,40,0" Focusable="False">
             <StackPanel x:Name="MyList" HorizontalAlignment="Left" VerticalAlignment="Top"
                     SizeChanged="MyList_SizeChanged" >
             </StackPanel>
