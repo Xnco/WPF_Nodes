@@ -78,13 +78,13 @@ namespace WpfApp1.UserCtrl
                     isClose = value;
                     if (isClose)
                     {
-                        this.Open_Image.Visibility = Visibility.Hidden;
+                        //this.Open_Image.Visibility = Visibility.Hidden;
                         this.ToggleList.Visibility = Visibility.Hidden;
                         this.Height = Toggle_TextBox.ExtentHeight + 10;
                     }
                     else
                     {
-                        this.Open_Image.Visibility = Visibility.Visible;
+                        //this.Open_Image.Visibility = Visibility.Visible;
                         this.ToggleList.Visibility = Visibility.Visible;
                         this.Height = Toggle_TextBox.ExtentHeight + 10 + this.ToggleList.Height;
                     }

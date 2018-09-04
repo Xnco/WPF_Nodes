@@ -11,8 +11,12 @@
         
         <Button Name="Item_Button" Click="OnClickItem_Button"
                 HorizontalAlignment="Left" VerticalAlignment="Top"
-                Width="20" Height="20" Margin="0,2.5,0,0">
-            <Image Name="Item_Image" Height="15" Width="15" Visibility="Hidden" Source="../Images/btn-7.png"/>
+                Width="20" Height="20" Margin="0,2.5,0,0"
+                Opacity="0">
+            <Button.Background>
+                <ImageBrush ImageSource="../Images/完成圆.png"></ImageBrush>
+            </Button.Background>
+            <Image Name="Item_Image" Height="15" Width="15" Visibility="Hidden" Source="../Images/完成.png"/>
         </Button>
 
         <TextBlock Name="Item_Text" TextWrapping="Wrap" Text="TextBlock" Margin="28,5,22,6" MouseLeftButtonDown="Item_Text_MouseLeftButtonDown"/>

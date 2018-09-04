@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Title="MainWindow"
     Height="270" Width="300" 
-    MinHeight="200" MinWidth="300" 
+    MinHeight="270" MinWidth="300" 
     MaxHeight="700"
     ResizeMode="NoResize"
     WindowStyle="None"
