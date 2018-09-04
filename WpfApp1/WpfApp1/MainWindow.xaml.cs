@@ -26,10 +26,12 @@ namespace WpfApp1
             InitializeComponent();
         }
 
+        // 点击 Add
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // 新建一个文本开关
             TextToggle textToggle = new TextToggle();
+            textToggle.Toggle_Text.Text = "任务" + (MyList.Children.Count + 1);
             textToggle.parent = this.MyList;
 
             MyList.Children.Add(textToggle);
@@ -39,9 +41,9 @@ namespace WpfApp1
         private void MyList_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             StackPanel self = sender as StackPanel;
-            if (this.Height < self.ActualHeight + 50)
+            if (this.Height < self.ActualHeight + 15)
             {
-                this.Height = self.ActualHeight + 50; // 窗口高度 = 呈现的高度 + 50
+                this.Height = self.ActualHeight + 15; // 窗口高度 = 呈现的高度 + 15
             }
             //MessageBox.Show("高度" + self.ExtentHeight); 
         }

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.UserCtrl"
-             mc:Ignorable="d" Width="164" Height="30"
+             mc:Ignorable="d" Width="190" Height="30"
              MinHeight="30"
              >
     <Grid Name="Toggle" Margin="0,0,0,0" >
@@ -21,8 +21,8 @@
                  Margin="25,2,22,2"
                  TextWrapping="Wrap"  
                  LayoutUpdated="Toggle_Text_LayoutUpdated"
-                 LostKeyboardFocus="Toggle_TextBox_LostKeyboardFocus"
                  TextChanged="Toggle_TextBox_TextChanged"
+                 
                  Visibility="Hidden"/>
 
         <Button Name="Toggle_Delete" Content="-" 

@@ -79,21 +79,25 @@ namespace WpfApp1.UserCtrl
         private void Toggle_Text_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             TextBlock self = sender as TextBlock;
-            self.Visibility = Visibility.Hidden;
+            //TextBlock self = this.Toggle_Text;
 
             this.Toggle_TextBox.Text = self.Text;
             this.Toggle_TextBox.Visibility = Visibility.Visible;
             this.Toggle_TextBox.Focus();
+
+            self.Visibility = Visibility.Hidden;
         }
 
         // 离开输入框出现文本
         private void Toggle_TextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            TextBox self = sender as TextBox;
-            self.Visibility = Visibility.Hidden;
+            //TextBox self = sender as TextBox;
+            //self.Visibility = Visibility.Hidden;
 
-            this.Toggle_Text.Visibility = Visibility.Visible;
-            this.Toggle_Text.Text = self.Text;
+            //this.Toggle_Text.Visibility = Visibility.Visible;
+            //this.Toggle_Text.Text = self.Text;
+
+            //MessageBox.Show("xx");
         }
 
         // 输入框文字改变的时候
@@ -101,6 +105,15 @@ namespace WpfApp1.UserCtrl
         {
             TextBox self = sender as TextBox;
             this.Height = self.ExtentHeight + 10;  // 整体大小 = 可视区域大小 + 10
+        }
+
+        private void Toggle_TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox self = sender as TextBox;
+            self.Visibility = Visibility.Hidden;
+
+            this.Toggle_Text.Visibility = Visibility.Visible;
+            this.Toggle_Text.Text = self.Text;
         }
     }
 }
