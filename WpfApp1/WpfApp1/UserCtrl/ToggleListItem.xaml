@@ -14,9 +14,9 @@
                 Width="20" Height="20" Margin="0,2.5,0,0"
                 >
             <Button.Background>
-                <ImageBrush ImageSource="../Images/FinishBG.png"></ImageBrush>
+                <ImageBrush ImageSource="../Images/finishbg.png"></ImageBrush>
             </Button.Background>
-            <Image Name="Item_Image" Height="15" Width="15" Visibility="Hidden" Source="../Images/Finish.png"/>
+            <Image Name="Item_Image" Height="15" Width="15" Visibility="Hidden" Source="../Images/finish.png"/>
         </Button>
 
         <TextBlock Name="Item_Text" TextWrapping="Wrap" Text="TextBlock" Margin="28,5,22,6" MouseLeftButtonDown="Item_Text_MouseLeftButtonDown"/>

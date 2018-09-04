@@ -110,8 +110,21 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Images\" />
+    <Resource Include="Images\addsmalltitle.png" />
+    <Resource Include="Images\addtitle.png" />
+    <Resource Include="Images\Background.png" />
+    <Resource Include="Images\BigTitle.png" />
+    <Resource Include="Images\btnbg.png" />
+    <Resource Include="Images\delsmall.png" />
+    <Resource Include="Images\drop.png" />
+    <Resource Include="Images\Finish.png" />
+    <Resource Include="Images\FinishBG.png" />
+    <Resource Include="Images\handle.png" />
+    <Resource Include="Images\nav.png" />
+    <Resource Include="Images\smalltitle.png" />
+    <Resource Include="Images\verscroll.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
