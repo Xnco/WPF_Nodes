@@ -9,13 +9,13 @@
              >
     <Grid Name="Toggle" Margin="0,0,0,0" >
         <Grid.Background>
-            <ImageBrush ImageSource="../Images/大主题.png"></ImageBrush>
+            <ImageBrush ImageSource="../Images/BigTitle.png"></ImageBrush>
         </Grid.Background>
 
         <Button Name="Open_Btn" Click="Open_Btn_Click"
             HorizontalAlignment="Left" VerticalAlignment="Top" 
             Width="25" Height="25" Margin="0,2,0,0"
-                Opacity="0">
+            >
 
             <Image Name="Open_Image" Height="15" Width="15" Source="../Images/下拉.png"/>
         </Button>
@@ -23,11 +23,11 @@
         <Button Name="Toggle_Button" Click="OnClickToggle_Button" 
                 HorizontalAlignment="Left" VerticalAlignment="Top"
                 Width="25" Height="25" Margin="25,2,0,0"
-                Opacity="0">
+               >
             <Button.Background>
-                <ImageBrush ImageSource="../Images/完成圆.png"></ImageBrush>
+                <ImageBrush ImageSource="../Images/FinishBG.png"></ImageBrush>
             </Button.Background>
-            <Image Name="Toggle_Image" Height="15" Width="15" Visibility="Hidden" Source="../Images/完成.png"/>
+            <Image Name="Toggle_Image" Height="15" Width="15" Visibility="Hidden" Source="../Images/Finish.png"/>
         </Button>
 
         <TextBlock Name="Toggle_Text" TextWrapping="Wrap" Text="TextBlock" Margin="60,5,42,6" MouseLeftButtonDown="Toggle_Text_MouseLeftButtonDown"/>
