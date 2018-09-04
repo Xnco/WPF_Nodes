@@ -56,8 +56,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LocalInfo.cs" />
     <Compile Include="UserCtrl\TextToggle.xaml.cs">
       <DependentUpon>TextToggle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserCtrl\ToggleListItem.xaml.cs">
+      <DependentUpon>ToggleListItem.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -72,6 +76,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserCtrl\TextToggle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserCtrl\ToggleListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

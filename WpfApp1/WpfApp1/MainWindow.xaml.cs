@@ -21,9 +21,17 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<TextToggle> allItem;
+
         public MainWindow()
         {
+            // 初始化本地数据
+            LocalInfo.GetSingle();
+            allItem = new List<TextToggle>();
+
             InitializeComponent();
+
+            MessageBox.Show(LocalInfo.GetSingle().path);
         }
 
         // 点击 Add
@@ -36,6 +44,7 @@ namespace WpfApp1
             textToggle.parent = this.MyList;
 
             MyList.Children.Add(textToggle);
+            allItem.Add(textToggle);
         }
 
         // 集合Size变化
@@ -61,6 +70,7 @@ namespace WpfApp1
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            this.Focus();
             this.DragMove();
         }
     }

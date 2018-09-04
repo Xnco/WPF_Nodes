@@ -7,23 +7,24 @@
     xmlns:UserCtrl="clr-namespace:WpfApp1.UserCtrl" x:Class="WpfApp1.MainWindow"
     mc:Ignorable="d"
     Title="MainWindow"
-    Height="270" Width="250" 
-    MinHeight="200" MinWidth="250" 
+    Height="270" Width="300" 
+    MinHeight="200" MinWidth="300" 
     MaxHeight="700"
     ResizeMode="NoResize"
     WindowStyle="None"
     
     MouseRightButtonDown="Window_MouseRightButtonDown"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
-    Background="AliceBlue"
+    Background="CadetBlue"
 >
     <Grid Name="main">
         <ScrollViewer Margin="0,0,40,0" Focusable="False">
             <StackPanel x:Name="MyList" HorizontalAlignment="Left" VerticalAlignment="Top"
                     SizeChanged="MyList_SizeChanged" >
+
             </StackPanel>
         </ScrollViewer>
-        
+
         <Button Content="Add" 
                 Width="40" Height="40" 
                 HorizontalAlignment="Right" VerticalAlignment="Top" 
