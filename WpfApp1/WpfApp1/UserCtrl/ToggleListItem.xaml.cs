@@ -24,11 +24,13 @@ namespace WpfApp1.UserCtrl
 
         public ToggleListItem(TextToggle p, string text, bool varIson)
         {
-            isOn = varIson;
+            
             parent = p;
             InitializeComponent();
 
             // 初始化
+            IsOn = varIson;
+
             this.Item_Text.Text = text;
             //this.Item_Text.Visibility = Visibility.Hidden;
 
@@ -57,6 +59,11 @@ namespace WpfApp1.UserCtrl
                     this.Item_Image.Visibility = Visibility.Hidden;
                 }
             }
+        }
+
+        public string Text
+        {
+            get => Item_TextBox.Text;
         }
 
         public double inputHeight
@@ -92,8 +99,8 @@ namespace WpfApp1.UserCtrl
         private void Item_TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox self = sender as TextBox;
-            self.Height = self.ExtentHeight + 10;  // 输入框的大小变化
-            this.Height = self.ExtentHeight + 10;  // Item整体的大小也要变化
+            self.Height = self.ExtentHeight + 15;  // 输入框的大小变化
+            this.Height = self.ExtentHeight + 18;  // Item整体的大小也要变化
 
             parent.UpdateToggleList(); // 更新列表
         }

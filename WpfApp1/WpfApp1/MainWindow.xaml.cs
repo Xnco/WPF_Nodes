@@ -24,7 +24,7 @@ namespace WpfApp1
     {
         public static MainWindow instance;
 
-        public List<TextToggle> allItem;
+        public List<TextToggle> allTask;
 
         public MainWindow()
         {
@@ -34,7 +34,7 @@ namespace WpfApp1
 
             // 初始化本地数据
             LocalInfo.GetSingle();
-            allItem = new List<TextToggle>();
+            allTask = new List<TextToggle>();
 
             // 模拟一个任务小任务
             //var tmp = CreateTask("Big");
@@ -46,6 +46,8 @@ namespace WpfApp1
 
             //time.Interval = new TimeSpan(0, 0, 0, 1);
             //time.Start();
+
+            LocalInfo.GetSingle().LoadXML();
         }
 
         // 点击 Add
@@ -100,12 +102,23 @@ namespace WpfApp1
             textToggle.UpdateToggleList();
 
             MyList.Children.Add(textToggle); // 添加到主列表中
-            allItem.Add(textToggle);         // 添加到集合中统一管理
+            allTask.Add(textToggle);         // 添加到集合中统一管理
 
             // 聚焦
             textToggle.Toggle_TextBox.Focus();
 
             return textToggle;
+        }
+
+        private void SavaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            LocalInfo.GetSingle().SavaXML();
+        }
+
+        public void RemoveTask(TextToggle item)
+        {
+            allTask.Remove(item);
+            MyList.Children.Remove(item);
         }
     }
 }

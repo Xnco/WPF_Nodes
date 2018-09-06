@@ -21,6 +21,8 @@ namespace WpfApp1
                 return instance;
         }
 
+        public string dir;
+
         // 当前路径 - 当前读取中的 Xml
         public string path;  
 
@@ -32,8 +34,17 @@ namespace WpfApp1
             allTask = new List<Task>();
 
             // 读取我的文档本地Xml, 没有就不读取
-            path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\MyNodes\Nodes.xml";
+            dir = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\MyNodes\";
+            path = dir + "Nodes.xml";
 
+        }
+
+        public void LoadXML()
+        {
+            if (File.Exists(path))
+            {
+                LoadXML(path);
+            }
         }
 
         public void LoadXML(string path)
@@ -79,7 +90,7 @@ namespace WpfApp1
                         DispatcherTimer timer = new DispatcherTimer();
                         timer.Tick += (sender, e) =>
                         {
-                            textToggle.CreateItem(itemText, bool.Parse(itemIson));
+                            textToggle.CreateItem(itemText, bool.Parse(itemIson), false);
                             timer.Stop();
                         };
                         timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
@@ -88,6 +99,66 @@ namespace WpfApp1
                     }
                 }
             }
+        }
+
+        public void SavaXML()
+        {
+            XmlDocument xml = new XmlDocument();
+            
+            // 注释版本和编码
+            XmlDeclaration dec = xml.CreateXmlDeclaration("1.0", "UTF-8", null);
+            xml.AppendChild(dec);
+
+            // 创建根目录
+            XmlElement root = xml.CreateElement("Nodes");
+            xml.AppendChild(root);
+
+            // 遍历所有的任务
+            for (int i = 0; i < MainWindow.instance.allTask.Count; i++)
+            {
+                var tmpTextToggle = MainWindow.instance.allTask[i];
+
+                // 创建 Task
+                var tmpTask = xml.CreateElement("Task");
+                root.AppendChild(tmpTask);
+
+                var ison = xml.CreateElement("isOn");
+                ison.InnerText = tmpTextToggle.IsOn.ToString();
+                tmpTask.AppendChild(ison);
+
+                var isclose = xml.CreateElement("isClose");
+                isclose.InnerText = tmpTextToggle.IsClose.ToString();
+                tmpTask.AppendChild(isclose);
+
+                var text = xml.CreateElement("text");
+                text.InnerText = tmpTextToggle.Text;
+                tmpTask.AppendChild(text);
+
+                var items = xml.CreateElement("Items");
+                tmpTask.AppendChild(items);
+
+                // 创建小任务
+                foreach (var item in tmpTextToggle.allItem)
+                {
+                    // 创建 Item
+                    var tempItem = xml.CreateElement("Item");
+                    items.AppendChild(tempItem);
+
+                    var itemIsOn = xml.CreateElement("isOn");
+                    itemIsOn.InnerText = item.IsOn.ToString();
+                    tempItem.AppendChild(itemIsOn);
+
+                    var itemText = xml.CreateElement("text");
+                    itemText.InnerText = item.Text;
+                    tempItem.AppendChild(itemText);
+                }
+            }
+
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            xml.Save(path);
         }
     }
 

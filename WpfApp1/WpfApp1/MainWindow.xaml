@@ -26,6 +26,8 @@
                 <ImageBrush ImageSource="Images/nav.png"></ImageBrush>
             </Grid.Background>
 
+            <Button Width="60" Height="20" Content="Sava" HorizontalAlignment="Left" Name="SavaBtn" Click="SavaBtn_Click"/>
+
             <Button Width="18" Height="18" 
             Margin="0,0,24,0"
             HorizontalAlignment="Right" VerticalAlignment="Center" 

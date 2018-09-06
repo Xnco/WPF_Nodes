@@ -27,6 +27,10 @@ namespace WpfApp1.UserCtrl
         private bool isOn;
         private bool isClose;
 
+        public string Text {
+            get => Toggle_TextBox.Text;
+        }
+
         public TextToggle(string text, bool varIsOn, bool varIsClose, Panel p)
         {
             parent = p;
@@ -49,7 +53,7 @@ namespace WpfApp1.UserCtrl
                 isOn = value;
                 if (isOn)
                 {
-                    // 点击加删除线, 显示√
+                    // 加删除线, 显示√
                     Toggle_Text.TextDecorations = TextDecorations.Strikethrough;
                     this.Toggle_Image.Visibility = Visibility.Visible;
                     IsClose = true;
@@ -98,9 +102,9 @@ namespace WpfApp1.UserCtrl
         private void OnClickToggle_Delete(object sender, RoutedEventArgs e)
         {
             //this.Toggle.Visibility = Visibility.Hidden;
-            if (parent != null)
+            if (MainWindow.instance != null)
             {
-                parent.Children.Remove(this); // 移除自己
+                MainWindow.instance.RemoveTask(this); // 移除自己
             }   
         }
 
@@ -108,20 +112,23 @@ namespace WpfApp1.UserCtrl
         private void Toggle_Add_Click(object sender, RoutedEventArgs e)
         {
             // 新建一个新的子项目
-            CreateItem("子任务" + (this.ToggleList.Children.Count + 1), false);
+            CreateItem("子任务" + (this.ToggleList.Children.Count + 1));
         }
 
         // 创建小任务
-        public void CreateItem(string text, bool ison = false)
+        public void CreateItem(string text, bool ison = false, bool isOpen = true)
         {
             var textItem = new ToggleListItem(this, text, ison);
 
             this.ToggleList.Children.Add(textItem); // 添加到自己的列表中
             allItem.Add(textItem);  // 添加到集合中统一管理
-                                   
+
             // 添加子项目就自动展开, 自动结束完成状态
-            IsClose = false;
-            IsOn = false;
+            if (isOpen)
+            {
+                IsClose = false;
+                IsOn = false;
+            }
 
             UpdateToggleList(); // 更新列表大小
         }

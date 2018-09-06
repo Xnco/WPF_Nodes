@@ -19,38 +19,4 @@
         </Items>
     </Task>
 
-    <Task>
-        <isOn>false</isOn>
-        <isClose>false</isClose>
-        <text>初始任务</text>
-        
-        <Items>
-            <Item>
-                <isOn>false</isOn>
-                <text>初始任务1</text>
-            </Item>
-            <Item>
-                <isOn>true</isOn>
-                <text>初始就已经完成了的任务2</text>
-            </Item>
-        </Items>
-    </Task>
-
-    <Task>
-        <isOn>false</isOn>
-        <isClose>false</isClose>
-        <text>初始任务</text>
-        
-        <Items>
-            <Item>
-                <isOn>false</isOn>
-                <text>初始任务1</text>
-            </Item>
-            <Item>
-                <isOn>true</isOn>
-                <text>初始就已经完成了的任务2</text>
-            </Item>
-        </Items>
-    </Task>
-    
 </Nodes>
