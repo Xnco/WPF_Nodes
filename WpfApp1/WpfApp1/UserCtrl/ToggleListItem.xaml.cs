@@ -22,27 +22,10 @@ namespace WpfApp1.UserCtrl
     {
         public TextToggle parent;
 
-        public ToggleListItem(TextToggle p, string text)
-        {
-            isOn = false;
-            parent = p;
-            
-            InitializeComponent();
-
-            // 初始化
-            this.Item_Text.Text = text;
-            //this.Item_Text.Visibility = Visibility.Hidden;
-
-            this.Item_TextBox.Text = text;
-            this.Item_TextBox.Visibility = Visibility.Hidden;
-            //this.Item_TextBox.Focus();
-        }
-
         public ToggleListItem(TextToggle p, string text, bool varIson)
         {
             isOn = varIson;
             parent = p;
-
             InitializeComponent();
 
             // 初始化

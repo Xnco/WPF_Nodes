@@ -21,28 +21,29 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow instance;
+
         public List<TextToggle> allItem;
 
         public MainWindow()
         {
+            InitializeComponent();
+
+            instance = this;
+
             // 初始化本地数据
             LocalInfo.GetSingle();
             allItem = new List<TextToggle>();
-
-            InitializeComponent();
         }
 
         // 点击 Add
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // 新建一个文本开关
-            TextToggle textToggle = new TextToggle();
-            textToggle.Toggle_Text.Text = "任务" + (MyList.Children.Count + 1);
-            textToggle.Toggle_TextBox.Focus();
-            textToggle.parent = this.MyList;
+            // 新建一个新的大任务
+            var textToggle = CreateTask("任务" + (MyList.Children.Count + 1), false, false);
 
-            MyList.Children.Add(textToggle);
-            allItem.Add(textToggle);
+            // 聚焦
+            textToggle.Toggle_TextBox.Focus();
         }
 
         // 集合Size变化
@@ -81,6 +82,17 @@ namespace WpfApp1
                 string path = ((System.Array)data).GetValue(0).ToString();
                 LocalInfo.GetSingle().LoadXML(path);
             }
+        }
+
+        // 新建一个大任务
+        public TextToggle CreateTask(string text, bool ison, bool isclose)
+        {
+            TextToggle textToggle = new TextToggle(text, ison, isclose, this.MyList);
+
+            MyList.Children.Add(textToggle); // 添加到主列表中
+            allItem.Add(textToggle);         // 添加到集合中统一管理
+
+            return textToggle;
         }
     }
 }

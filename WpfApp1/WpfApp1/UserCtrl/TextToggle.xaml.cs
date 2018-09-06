@@ -28,20 +28,22 @@ namespace WpfApp1.UserCtrl
 
         public TextToggle()
         {
+            InitializeComponent();
+
             isOn = false;
             IsClose = false;
             allItem = new List<ToggleListItem>();
-
-            InitializeComponent();
         }
 
-        public TextToggle(string text, bool varIsOn, bool varIsClose)
+        public TextToggle(string text, bool varIsOn, bool varIsClose, Panel p)
         {
+            InitializeComponent();
+
             isOn = varIsOn;
             IsClose = varIsClose;
+            parent = p;
+            Toggle_Text.Text = text;
             allItem = new List<ToggleListItem>();
-
-            InitializeComponent();
         }
 
         // 是否完成任务
@@ -111,12 +113,17 @@ namespace WpfApp1.UserCtrl
         // 点击添加子任务
         private void Toggle_Add_Click(object sender, RoutedEventArgs e)
         {
-            // 新建一个子项目
-            ToggleListItem textToggle = new ToggleListItem(this, "子任务" + (this.ToggleList.Children.Count + 1));
-            //textToggle.Item_TextBox.Focus();
+            // 新建一个新的子项目
+            CreateItem("子任务" + (this.ToggleList.Children.Count + 1), false);
+        }
 
-            this.ToggleList.Children.Add(textToggle);
-            allItem.Add(textToggle);
+        // 创建小任务
+        public void CreateItem(string text, bool ison)
+        {
+            var textItem = new ToggleListItem(this, text, ison);
+
+            this.ToggleList.Children.Add(textItem); // 添加到自己的列表中
+            allItem.Add(textItem);  // 添加到集合中统一管理
 
             UpdateToggleList(); // 更新列表大小
         }
