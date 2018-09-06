@@ -21,20 +21,20 @@
     Drop="Window_Drop"
 >
     <Grid>
-        <Grid VerticalAlignment="Top" Width="300" Height="36">
+        <Grid Name="Title" VerticalAlignment="Top" Height="36">
             <Grid.Background>
                 <ImageBrush ImageSource="Images/nav.png"></ImageBrush>
             </Grid.Background>
+
             <Button Width="18" Height="18" 
             Margin="0,0,24,0"
             HorizontalAlignment="Right" VerticalAlignment="Center" 
-            BorderBrush="White"
-                    Background="White"
+            BorderBrush="White" Background="White"
             Click="Button_Click" >
                 <Image Source="Images/addtitle.png"></Image>
             </Button>
         </Grid>
-        
+
         <Grid Name="main">
             <ScrollViewer Margin="0,36,0,0" Focusable="False">
                 <StackPanel x:Name="MyList" HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -43,8 +43,8 @@
                 </StackPanel>
             </ScrollViewer>
 
-            
+
         </Grid>
     </Grid>
-    
+
 </Window>
