@@ -26,22 +26,23 @@
             <Grid >
 
                 <Button Name="Open_Btn" Click="Open_Btn_Click" Background="White" BorderBrush="White"
-                HorizontalAlignment="Left" VerticalAlignment="Top" 
-                Width="16" Height="16" Margin="10,5,0,0" >
+                    HorizontalAlignment="Left" VerticalAlignment="Top" 
+                    Width="16" Height="16" Margin="10,5,0,0" >
                     <Image Name="Open_Image" Height="14" Width="7" Source="../Images/drop.png"/>
                 </Button>
 
                 <TextBlock Name="Toggle_Text" TextWrapping="Wrap" Text="TextBlock" Margin="33,5,46,8" MouseLeftButtonDown="Toggle_Text_MouseLeftButtonDown"/>
 
                 <TextBox Name="Toggle_TextBox" Text="任务"
-                 VerticalAlignment="Top"
-                 Margin="31,2,46,1"
-                 MinHeight="25"
-                 TextWrapping="Wrap"  
-                 LayoutUpdated="Toggle_Text_LayoutUpdated"
-                 TextChanged="Toggle_TextBox_TextChanged"
-                 LostKeyboardFocus="Toggle_TextBox_LostKeyboardFocus"
-                 Visibility="Hidden"/>
+                    VerticalAlignment="Top"
+                    Margin="31,2,46,1"
+                    MinHeight="25"
+                    TextWrapping="Wrap"  
+                    LayoutUpdated="Toggle_Text_LayoutUpdated"
+                    TextChanged="Toggle_TextBox_TextChanged"
+                    LostKeyboardFocus="Toggle_TextBox_LostKeyboardFocus"
+                    MouseDoubleClick="Toggle_TextBox_MouseDoubleClick"
+                    Visibility="Hidden"/>
 
                 <Button Name="Toggle_Delete" Background="White" BorderBrush="White"
                 HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,30,0"

@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Threading;
 
 namespace WpfApp1.UserCtrl
 {
@@ -206,6 +205,13 @@ namespace WpfApp1.UserCtrl
             allItem.Remove(item);
             ToggleList.Children.Remove(item);
             UpdateToggleList();
+        }
+
+        // 双击确认
+        private void Toggle_TextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            TextBox self = sender as TextBox;
+            self.TabIndex = -1;
         }
     }
 }

@@ -124,5 +124,11 @@ namespace WpfApp1.UserCtrl
                 parent.RemoveItem(this);
             }
         }
+
+        private void Item_TextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            TextBox self = sender as TextBox;
+            self.TabIndex = -1;
+        }
     }
 }
