@@ -5,6 +5,7 @@ using System.Xml;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WpfApp1
 {
@@ -21,8 +22,11 @@ namespace WpfApp1
                 return instance;
         }
 
-        public List<Task> allTask;
+        // 默认路径 - 我的文档中的 Xml
         public string path;
+
+        // 当前所有任务
+        public List<Task> allTask;
 
         private LocalInfo()
         {
@@ -34,9 +38,15 @@ namespace WpfApp1
         }
 
 
-        private void LoadXML()
+        public void LoadXML(string path)
         {
-           
+            string[] tmp = path.Split('.');
+            if (tmp.Length < 1 || tmp[tmp.Length - 1] != "xml")
+            {
+                MessageBox.Show("不是Xml, 不能解析");
+                return;
+            }
+
             if (File.Exists(path))
             {
                 // 读取所有任务并生成

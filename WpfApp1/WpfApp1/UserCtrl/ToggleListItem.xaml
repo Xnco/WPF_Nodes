@@ -9,7 +9,7 @@
              Height="36" Width="208" MinHeight="36">
     <Grid Margin="0,0,0,0" MinHeight="25">
 
-        <Button Name="Item_Button" Click="OnClickItem_Button" BorderBrush="White"
+        <Button Name="Item_Button" Click="OnClickItem_Button" BorderBrush="#BFEFFF"
                 HorizontalAlignment="Left" VerticalAlignment="Top"
                 Width="20" Height="20" Margin="5,6,0,0"
                 >

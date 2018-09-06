@@ -12,10 +12,13 @@
     MaxHeight="700"
     ResizeMode="NoResize"
     WindowStyle="None"
+    Background="#F1F1F1"
     
     MouseRightButtonDown="Window_MouseRightButtonDown"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
-    Background="#F1F1F1"
+    
+    AllowDrop="True"
+    Drop="Window_Drop"
 >
     <Grid>
         <Grid VerticalAlignment="Top" Width="300" Height="36">

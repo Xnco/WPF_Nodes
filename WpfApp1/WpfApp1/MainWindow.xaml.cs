@@ -30,8 +30,6 @@ namespace WpfApp1
             allItem = new List<TextToggle>();
 
             InitializeComponent();
-
-            MessageBox.Show(LocalInfo.GetSingle().path);
         }
 
         // 点击 Add
@@ -72,6 +70,17 @@ namespace WpfApp1
         {
             this.Focus();
             this.DragMove();
+        }
+
+        // 落下
+        private void Window_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                object data = e.Data.GetData(DataFormats.FileDrop);
+                string path = ((System.Array)data).GetValue(0).ToString();
+                LocalInfo.GetSingle().LoadXML(path);
+            }
         }
     }
 }
