@@ -31,11 +31,11 @@
                     <Image Name="Open_Image" Height="14" Width="7" Source="../Images/drop.png"/>
                 </Button>
 
-                <TextBlock Name="Toggle_Text" TextWrapping="Wrap" Text="TextBlock" Margin="31,5,46,6" MouseLeftButtonDown="Toggle_Text_MouseLeftButtonDown"/>
+                <TextBlock Name="Toggle_Text" TextWrapping="Wrap" Text="TextBlock" Margin="33,5,46,8" MouseLeftButtonDown="Toggle_Text_MouseLeftButtonDown"/>
 
                 <TextBox Name="Toggle_TextBox" Text="任务"
                  VerticalAlignment="Top"
-                 Margin="55,2,42,2"
+                 Margin="31,2,46,1"
                  TextWrapping="Wrap"  
                  LayoutUpdated="Toggle_Text_LayoutUpdated"
                  TextChanged="Toggle_TextBox_TextChanged"
@@ -59,7 +59,7 @@
             
         </Border>
 
-        <StackPanel Name="ToggleList" Margin="0,0,0,0"
+        <StackPanel Name="ToggleList" Margin="0,0,5,0"
                     HorizontalAlignment="Right" VerticalAlignment="Bottom"
                     Focusable="False"
                     >

@@ -115,6 +115,10 @@ namespace WpfApp1.UserCtrl
         {
             // 新建一个新的子项目
             CreateItem("子任务" + (this.ToggleList.Children.Count + 1), false);
+
+            // 添加子项目就自动展开, 自动结束完成状态
+            IsClose = false;
+            IsOn = false; 
         }
 
         // 创建小任务
@@ -191,7 +195,7 @@ namespace WpfApp1.UserCtrl
                 this.ToggleList.Height += allItem[i].inputHeight;
             }
 
-            this.Height = this.Toggle_TextBox.ExtentHeight + 10 + this.ToggleList.Height;
+            this.Height = this.Toggle_TextBox.ExtentHeight + 15 + this.ToggleList.Height;
         }
 
         public void RemoveItem(ToggleListItem item)
