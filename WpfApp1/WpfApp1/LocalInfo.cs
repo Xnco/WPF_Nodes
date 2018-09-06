@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace WpfApp1
 {
@@ -77,7 +76,15 @@ namespace WpfApp1
                         string itemText = item.SelectSingleNode("text").InnerText; // 子任务具体内容
 
                         // 创建
-                        textToggle.CreateItem(itemText, bool.Parse(itemIson));
+                        DispatcherTimer timer = new DispatcherTimer();
+                        timer.Tick += (sender, e) =>
+                        {
+                            textToggle.CreateItem(itemText, bool.Parse(itemIson));
+                            timer.Stop();
+                        };
+                        timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+                        timer.Start();
+                        //textToggle.CreateItem(itemText, bool.Parse(itemIson));
                     }
                 }
             }

@@ -114,8 +114,6 @@ namespace WpfApp1.UserCtrl
             //this.Toggle.Visibility = Visibility.Hidden;
             if (parent != null)
             {
-                //parent.ToggleList.Children.Remove(this); // 移除自己
-                //parent.UpdateToggleList();
                 parent.RemoveItem(this);
             }
         }

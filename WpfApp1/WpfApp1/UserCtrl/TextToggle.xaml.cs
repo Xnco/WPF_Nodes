@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace WpfApp1.UserCtrl
 {
@@ -26,24 +27,17 @@ namespace WpfApp1.UserCtrl
         private bool isOn;
         private bool isClose;
 
-        public TextToggle()
-        {
-            InitializeComponent();
-
-            isOn = false;
-            IsClose = false;
-            allItem = new List<ToggleListItem>();
-        }
-
         public TextToggle(string text, bool varIsOn, bool varIsClose, Panel p)
         {
+            parent = p;
+            allItem = new List<ToggleListItem>();
+
             InitializeComponent();
 
-            isOn = varIsOn;
+            IsOn = varIsOn;
             IsClose = varIsClose;
-            parent = p;
             Toggle_Text.Text = text;
-            allItem = new List<ToggleListItem>();
+            Toggle_TextBox.Text = text;
         }
 
         // 是否完成任务
@@ -115,19 +109,19 @@ namespace WpfApp1.UserCtrl
         {
             // 新建一个新的子项目
             CreateItem("子任务" + (this.ToggleList.Children.Count + 1), false);
-
-            // 添加子项目就自动展开, 自动结束完成状态
-            IsClose = false;
-            IsOn = false; 
         }
 
         // 创建小任务
-        public void CreateItem(string text, bool ison)
+        public void CreateItem(string text, bool ison = false)
         {
             var textItem = new ToggleListItem(this, text, ison);
 
             this.ToggleList.Children.Add(textItem); // 添加到自己的列表中
             allItem.Add(textItem);  // 添加到集合中统一管理
+                                   
+            // 添加子项目就自动展开, 自动结束完成状态
+            IsClose = false;
+            IsOn = false;
 
             UpdateToggleList(); // 更新列表大小
         }
@@ -169,6 +163,8 @@ namespace WpfApp1.UserCtrl
             TextBox self = sender as TextBox;
             self.Height = self.ExtentHeight + 10;  // 整体大小 = 可视区域大小 + 10
 
+            //MessageBox.Show("Changed" + self.Height);
+
             if (this.ToggleList == null)
             {
                 this.Height = self.ExtentHeight + 10;
@@ -177,7 +173,7 @@ namespace WpfApp1.UserCtrl
             {
                 this.Height = self.ExtentHeight + 10 + this.ToggleList.Height;
             }
-           
+
         }
 
         // 点击展开或关闭

@@ -36,6 +36,7 @@
                 <TextBox Name="Toggle_TextBox" Text="任务"
                  VerticalAlignment="Top"
                  Margin="31,2,46,1"
+                 MinHeight="25"
                  TextWrapping="Wrap"  
                  LayoutUpdated="Toggle_Text_LayoutUpdated"
                  TextChanged="Toggle_TextBox_TextChanged"

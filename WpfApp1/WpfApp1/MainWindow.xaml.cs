@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using WpfApp1.UserCtrl;
 
 namespace WpfApp1
@@ -34,16 +35,24 @@ namespace WpfApp1
             // 初始化本地数据
             LocalInfo.GetSingle();
             allItem = new List<TextToggle>();
+
+            // 模拟一个任务小任务
+            //var tmp = CreateTask("Big");
+            //DispatcherTimer time = new DispatcherTimer();
+            //time.Tick += (sender, e) =>
+            //{
+            //    tmp.CreateItem("Small");
+            //};
+
+            //time.Interval = new TimeSpan(0, 0, 0, 1);
+            //time.Start();
         }
 
         // 点击 Add
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // 新建一个新的大任务
-            var textToggle = CreateTask("任务" + (MyList.Children.Count + 1), false, false);
-
-            // 聚焦
-            textToggle.Toggle_TextBox.Focus();
+            var textToggle = CreateTask("任务" + (MyList.Children.Count + 1));
         }
 
         // 集合Size变化
@@ -85,12 +94,16 @@ namespace WpfApp1
         }
 
         // 新建一个大任务
-        public TextToggle CreateTask(string text, bool ison, bool isclose)
+        public TextToggle CreateTask(string text, bool ison = false, bool isclose = false)
         {
             TextToggle textToggle = new TextToggle(text, ison, isclose, this.MyList);
+            textToggle.UpdateToggleList();
 
             MyList.Children.Add(textToggle); // 添加到主列表中
             allItem.Add(textToggle);         // 添加到集合中统一管理
+
+            // 聚焦
+            textToggle.Toggle_TextBox.Focus();
 
             return textToggle;
         }
