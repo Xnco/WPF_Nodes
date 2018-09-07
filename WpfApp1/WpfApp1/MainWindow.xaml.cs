@@ -55,6 +55,16 @@ namespace WpfApp1
         {
             // 新建一个新的大任务
             var textToggle = CreateTask("任务" + (MyList.Children.Count + 1));
+
+            // 聚焦 - 定时一会, 再聚焦过来
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Tick += (varS, varE) => {
+                textToggle.Toggle_TextBox.Focus();
+                textToggle.Toggle_TextBox.SelectAll();
+                timer.Stop();
+            };
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            timer.Start();
         }
 
         // 集合Size变化
@@ -103,9 +113,6 @@ namespace WpfApp1
 
             MyList.Children.Add(textToggle); // 添加到主列表中
             allTask.Add(textToggle);         // 添加到集合中统一管理
-
-            // 聚焦
-            textToggle.Toggle_TextBox.Focus();
 
             return textToggle;
         }

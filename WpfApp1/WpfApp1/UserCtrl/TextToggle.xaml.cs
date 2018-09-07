@@ -41,6 +41,8 @@ namespace WpfApp1.UserCtrl
             IsClose = varIsClose;
             Toggle_Text.Text = text;
             Toggle_TextBox.Text = text;
+            //this.Toggle_TextBox.Focus();
+            //this.Toggle_TextBox.SelectAll();
         }
 
         // 是否完成任务
@@ -149,6 +151,7 @@ namespace WpfApp1.UserCtrl
             this.Toggle_TextBox.Text = self.Text;
             this.Toggle_TextBox.Visibility = Visibility.Visible;
             this.Toggle_TextBox.Focus();
+            this.Toggle_TextBox.SelectAll();
 
             self.Visibility = Visibility.Hidden;
         }
@@ -205,13 +208,6 @@ namespace WpfApp1.UserCtrl
             allItem.Remove(item);
             ToggleList.Children.Remove(item);
             UpdateToggleList();
-        }
-
-        // 双击确认
-        private void Toggle_TextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            TextBox self = sender as TextBox;
-            self.TabIndex = -1;
         }
     }
 }
