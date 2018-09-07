@@ -105,6 +105,12 @@ namespace WpfApp1.UserCtrl
             parent.UpdateToggleList(); // 更新列表
         }
 
+        // 获取焦点时
+        private void Item_TextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            MainWindow.instance.curBox = sender as TextBox;
+        }
+
         // 失焦出现文本
         private void Item_TextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
@@ -113,6 +119,8 @@ namespace WpfApp1.UserCtrl
 
             this.Item_Text.Visibility = Visibility.Visible;
             this.Item_Text.Text = self.Text;
+
+            MainWindow.instance.curBox = null;
         }
 
         //移除自己

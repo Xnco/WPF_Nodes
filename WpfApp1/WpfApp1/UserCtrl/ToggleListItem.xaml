@@ -35,6 +35,7 @@
                      MinHeight="25"
                      TextWrapping="Wrap"  
                      TextChanged="Item_TextBox_TextChanged"
+                     GotKeyboardFocus="Item_TextBox_GotKeyboardFocus"
                      LostKeyboardFocus="Item_TextBox_LostKeyboardFocus"
 
                      Visibility="Visible"/>

@@ -168,6 +168,12 @@ namespace WpfApp1.UserCtrl
             self.Visibility = Visibility.Hidden;
         }
 
+        // 获取焦点时, MainWindow 获取当前box
+        private void Toggle_TextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            MainWindow.instance.curBox = sender as TextBox;
+        }
+
         // 失焦出现文本
         private void Toggle_TextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
@@ -176,6 +182,8 @@ namespace WpfApp1.UserCtrl
 
             this.Toggle_Text.Visibility = Visibility.Visible;
             this.Toggle_Text.Text = self.Text;
+
+            MainWindow.instance.curBox = null;
         }
 
         // 输入框文字改变的时候

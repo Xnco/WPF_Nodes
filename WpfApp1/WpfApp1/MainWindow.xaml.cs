@@ -26,6 +26,8 @@ namespace WpfApp1
 
         public List<TextToggle> allTask;
 
+        public TextBox curBox; // 当前正在输入的Box
+
         public MainWindow()
         {
             InitializeComponent();
@@ -126,6 +128,19 @@ namespace WpfApp1
         {
             allTask.Remove(item);
             MyList.Children.Remove(item);
+        }
+
+        // 监听按键
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (curBox != null)
+                {
+                    // 获取当前正在输入的 TextBox
+                    //MessageBox.Show(curBox.Name);
+                }
+            }
         }
     }
 }

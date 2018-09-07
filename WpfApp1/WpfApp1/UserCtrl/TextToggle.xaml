@@ -42,6 +42,7 @@
                     TextWrapping="Wrap"  
                     LayoutUpdated="Toggle_Text_LayoutUpdated"
                     TextChanged="Toggle_TextBox_TextChanged"
+                    GotKeyboardFocus="Toggle_TextBox_GotKeyboardFocus"
                     LostKeyboardFocus="Toggle_TextBox_LostKeyboardFocus"
 
                     Visibility="Visible"/>

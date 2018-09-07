@@ -14,6 +14,8 @@
     WindowStyle="None"
     Background="#F1F1F1"
     
+    KeyDown="Window_KeyDown"
+    
     MouseRightButtonDown="Window_MouseRightButtonDown"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     
@@ -26,7 +28,10 @@
                 <ImageBrush ImageSource="Images/nav.png"></ImageBrush>
             </Grid.Background>
 
-            <Button Width="60" Height="20" Content="Sava" HorizontalAlignment="Left" Name="SavaBtn" Click="SavaBtn_Click"/>
+            <Button Width="60" Height="20" Content="Sava" 
+                    BorderBrush="White" Background="White"
+                    TextBlock.Foreground="#22D1FF"
+                    HorizontalAlignment="Left" Name="SavaBtn" Click="SavaBtn_Click"/>
 
             <Button Width="18" Height="18" 
                     Margin="0,0,24,0"
