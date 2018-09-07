@@ -24,7 +24,10 @@
                 <ImageBrush ImageSource="../Images/bigtitle.png"></ImageBrush>
             </Border.Background>-->
             <Grid>
-                <TextBlock Name="Item_Text" TextWrapping="Wrap" Text="TextBlock" Margin="4,8,26,6" MouseLeftButtonDown="Item_Text_MouseLeftButtonDown"/>
+                <TextBlock Name="Item_Text" TextWrapping="Wrap" Text="TextBlock" Margin="4,8,26,6" 
+                           MouseLeftButtonDown="Item_Text_MouseLeftButtonDown"
+                           Visibility="Hidden"
+                           />
 
                 <TextBox Name="Item_TextBox" Text="任务"
                      VerticalAlignment="Top"
@@ -34,7 +37,7 @@
                      TextChanged="Item_TextBox_TextChanged"
                      LostKeyboardFocus="Item_TextBox_LostKeyboardFocus"
 
-                     Visibility="Hidden"/>
+                     Visibility="Visible"/>
 
                 <Button Name="Item_Delete" Background="White" BorderBrush="White"
                 HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,5,0"

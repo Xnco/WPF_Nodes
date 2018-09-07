@@ -35,7 +35,7 @@ namespace WpfApp1.UserCtrl
             //this.Item_Text.Visibility = Visibility.Hidden;
 
             this.Item_TextBox.Text = text;
-            this.Item_TextBox.Visibility = Visibility.Hidden;
+            //this.Item_TextBox.Visibility = Visibility.Hidden;
             //this.Item_TextBox.Focus();
         }
 

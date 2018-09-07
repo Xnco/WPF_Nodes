@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WpfApp1.UserCtrl
 {
@@ -113,11 +114,20 @@ namespace WpfApp1.UserCtrl
         private void Toggle_Add_Click(object sender, RoutedEventArgs e)
         {
             // 新建一个新的子项目
-            CreateItem("子任务" + (this.ToggleList.Children.Count + 1));
+            var item = CreateItem("子任务" + (this.ToggleList.Children.Count + 1));
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Tick += (s, ee) => {
+                item.Item_TextBox.Focus();
+                item.Item_TextBox.SelectAll();
+                timer.Stop();
+            };
+            timer.Interval = new TimeSpan(0,0,0,0,1);
+            timer.Start();
         }
 
         // 创建小任务
-        public void CreateItem(string text, bool ison = false, bool isOpen = true)
+        public ToggleListItem CreateItem(string text, bool ison = false, bool isOpen = true)
         {
             var textItem = new ToggleListItem(this, text, ison);
 
@@ -132,6 +142,8 @@ namespace WpfApp1.UserCtrl
             }
 
             UpdateToggleList(); // 更新列表大小
+
+            return textItem;
         }
 
         // 文本布局更新
