@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:WpfApp1"
     xmlns:UserCtrl="clr-namespace:WpfApp1.UserCtrl" x:Class="WpfApp1.MainWindow"
     mc:Ignorable="d"
-    Title="MainWindow"
+    Title="MyNodes"
     Height="270" Width="300" 
     MinHeight="270" MinWidth="300" 
     MaxHeight="700"
