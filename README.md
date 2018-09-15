@@ -3,7 +3,8 @@
 ### 说明
     点击右上角的 "+" 号添加大任务, 点击大任务的 "+" 号添加对应的小人物, 点击 "-" 删除对应的人物
     项目开源免费, 求上面点星支持(star ^o^)
-![Image Text](https://github.com/Xnco/WPF_Nodes/blob/master/Show/MyNodes.gif)
+
+![Image Text](https://github.com/Xnco/WPF_Nodes/blob/master/Show/Nodes1.0.gif)
 
 ### 版本说明
 
