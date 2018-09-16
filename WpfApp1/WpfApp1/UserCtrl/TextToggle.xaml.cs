@@ -118,6 +118,8 @@ namespace WpfApp1.UserCtrl
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += (s, ee) => {
+                item.Item_Text.Visibility = Visibility.Hidden;
+                item.Item_TextBox.Visibility = Visibility.Visible;
                 item.Item_TextBox.Focus();
                 item.Item_TextBox.SelectAll();
                 timer.Stop();

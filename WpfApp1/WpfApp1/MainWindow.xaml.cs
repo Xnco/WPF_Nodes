@@ -65,6 +65,8 @@ namespace WpfApp1
             // 聚焦 - 定时一会, 再聚焦过来
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += (varS, varE) => {
+                textToggle.Toggle_Text.Visibility = Visibility.Hidden;
+                textToggle.Toggle_TextBox.Visibility = Visibility.Visible;
                 textToggle.Toggle_TextBox.Focus();
                 textToggle.Toggle_TextBox.SelectAll();
                 timer.Stop();
