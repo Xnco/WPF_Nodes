@@ -5,6 +5,7 @@ using System.Xml;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
+using Microsoft.Win32;
 
 namespace WpfApp1
 {
@@ -22,9 +23,10 @@ namespace WpfApp1
         }
 
         public string dir;
-
         // 当前路径 - 当前读取中的 Xml
-        public string path;  
+        public string path;
+        // 当前配置路径
+        public string configPath;
 
         // 当前所有任务
         public List<Task> allTask;
@@ -36,7 +38,13 @@ namespace WpfApp1
             // 读取我的文档本地Xml, 没有就不读取
             dir = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\MyNodes\";
             path = dir + "Nodes.xml";
+            configPath = dir + "config.txt";
 
+            // 创建本地存放数据的文件夹
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
         }
 
         public void LoadXML()
@@ -54,7 +62,7 @@ namespace WpfApp1
             string[] tmp = path.Split('.');
             if (tmp.Length < 1 || tmp[tmp.Length - 1].ToLower() != "xml")
             {
-                MessageBox.Show("不是Xml, 不能解析");
+                //MessageBox.Show("不是Xml, 不能解析");
                 return;
             }
 
@@ -65,6 +73,7 @@ namespace WpfApp1
                 xml.Load(path);
 
                 XmlNode root = xml.SelectSingleNode("Nodes");
+
                 XmlNodeList tasks = root.SelectNodes("Task");
                 for (int i = 0; i < tasks.Count; i++)
                 {
@@ -99,6 +108,19 @@ namespace WpfApp1
                     }
                 }
             }
+        }
+
+        public bool LoadConfig()
+        {
+            if (File.Exists(configPath))
+            {
+                string[] configs = File.ReadAllLines(configPath);
+
+                bool powerBootIsOn = bool.Parse(configs[0].Split(':')[1]);
+
+                return powerBootIsOn;
+            }
+            return false;
         }
 
         public void SavaXML()
@@ -154,11 +176,56 @@ namespace WpfApp1
                 }
             }
 
-            if (!Directory.Exists(dir))
-            {
-                Directory.CreateDirectory(dir);
-            }
             xml.Save(path);
+        }
+
+        public void ChangedPowerBoot(bool? powerboot)
+        {  
+            string config = "";
+            config += "PowerBoot:" + powerboot;
+            File.WriteAllText(configPath, config); // 保存到本地配置
+
+            string exeName = "MyNodes";
+            string exePath = System.Windows.Forms.Application.ExecutablePath;
+            string keyPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
+            // 判断开机是否启动
+            if (powerboot == true)
+            {
+                try
+                {
+                    //RegistryKey runs = Registry.LocalMachine.OpenSubKey(keyPath, true);
+                    RegistryKey runs = Registry.CurrentUser.OpenSubKey(keyPath, true);
+                    if (runs == null)
+                    {
+                        runs = Registry.LocalMachine.CreateSubKey(keyPath);
+                    }
+                    runs.SetValue(exeName, exePath);
+                    runs.Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("设置开机启动失败，检测本地注册表是否足够权限访问");
+                    throw;
+                }
+            }
+            else
+            {
+                try
+                {
+                    //RegistryKey runs = Registry.LocalMachine.OpenSubKey(keyPath, true);
+                    RegistryKey runs = Registry.CurrentUser.OpenSubKey(keyPath, true);
+                    if (runs == null)
+                    {
+                        runs = Registry.LocalMachine.CreateSubKey(keyPath);
+                    }
+                    runs.DeleteValue(exeName);
+                    runs.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
         }
     }
 

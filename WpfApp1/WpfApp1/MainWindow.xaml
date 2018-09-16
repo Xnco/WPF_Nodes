@@ -33,6 +33,12 @@
                     TextBlock.Foreground="#22D1FF"
                     HorizontalAlignment="Left" Name="SavaBtn" Click="SavaBtn_Click"/>
 
+            <CheckBox Name="PowerBoot" Content="开机自启" 
+                      Margin="107,10,125,11" VerticalAlignment="Center" HorizontalAlignment="Center"
+                      Checked="PowerBoot_Checked"
+                      Unchecked="PowerBoot_Checked"
+                      />
+
             <Button Width="18" Height="18" 
                     Margin="0,0,24,0"
                     HorizontalAlignment="Right" VerticalAlignment="Center" 

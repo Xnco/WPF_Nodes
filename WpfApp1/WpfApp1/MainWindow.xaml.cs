@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Microsoft.Win32;
 using WpfApp1.UserCtrl;
 
 namespace WpfApp1
@@ -50,6 +52,8 @@ namespace WpfApp1
             //time.Start();
 
             LocalInfo.GetSingle().LoadXML();
+            bool powerBoot = LocalInfo.GetSingle().LoadConfig();
+            PowerBoot.IsChecked = powerBoot;
         }
 
         // 点击 Add
@@ -141,6 +145,13 @@ namespace WpfApp1
                     //MessageBox.Show(curBox.Name);
                 }
             }
+        }
+
+        private void PowerBoot_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox cb = sender as CheckBox;
+
+            LocalInfo.GetSingle().ChangedPowerBoot(cb.IsChecked);
         }
     }
 }
