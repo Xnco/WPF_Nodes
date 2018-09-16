@@ -10,17 +10,19 @@
 #### 初版预览
 ![Image Text](https://github.com/Xnco/WPF_Nodes/blob/master/Show/MyNodes.gif)
 
-
-
 ### 版本说明
 
-#### 1.2 
+#### 1.10
+1. 新增功能: 开机启动，主页面加入开机启动开关，如果更换程序路径要重新开启此功能
+2. 新版本发布，[压缩包在这里](https://github.com/Xnco/WPF_Nodes/tree/master/Build/1.1)
+
+#### 1.01
 1. 新增功能: 直接拖拽适配的 XML 文件到窗口可以直接解析 XML, 对应 XML 格式见 [XML文件夹](https://github.com/Xnco/WPF_Nodes/tree/master/XML)中的模板
 
-#### 1.1 
+#### 1.00
 1. 更新了一版UI, 没上传效果图<br />
 2. 新增删除功能, 能删除小任务和大任务<br />
 3. 增加存档功能, 点击Sava按钮能保存所有任务信息到本地, 路径为 *"我的文档/MyNodes/"*
 
-#### 1.0 初版
+#### 0.1 初版
 1. 仅支持增加大任务和小人物
