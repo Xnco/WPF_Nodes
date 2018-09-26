@@ -29,9 +29,9 @@
                            Visibility="Visible"
                            />
 
-                <TextBox Name="Item_TextBox" Text="任务"
+                <TextBox Name="Item_TextBox"
                      VerticalAlignment="Top"
-                     Margin="0,5,31,0"
+                     Margin="0,4,31,0"
                      MinHeight="25"
                      TextWrapping="Wrap"  
                      TextChanged="Item_TextBox_TextChanged"

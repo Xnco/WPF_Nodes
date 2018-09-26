@@ -69,7 +69,7 @@ namespace WpfApp1.UserCtrl
             }
         }
 
-        // 是否打开子任务
+        // 是否关闭子任务
         public bool IsClose
         {
             get => isClose;
@@ -88,6 +88,7 @@ namespace WpfApp1.UserCtrl
                     {
                         //this.Open_Image.Visibility = Visibility.Visible;
                         this.ToggleList.Visibility = Visibility.Visible;
+                        UpdateToggleList();
                         this.Height = Toggle_TextBox.ExtentHeight + 10 + this.ToggleList.Height;
                     }
                 }
@@ -143,6 +144,7 @@ namespace WpfApp1.UserCtrl
                 IsOn = false;
             }
 
+            textItem.UpdateTextBox();
             UpdateToggleList(); // 更新列表大小
 
             return textItem;
@@ -196,7 +198,7 @@ namespace WpfApp1.UserCtrl
 
             //MessageBox.Show("Changed" + self.Height);
 
-            if (this.ToggleList == null)
+            if (this.ToggleList == null || IsClose)
             {
                 this.Height = self.ExtentHeight + 10;
             }
@@ -213,16 +215,20 @@ namespace WpfApp1.UserCtrl
             IsClose = !IsClose;
         }
 
+        // 更新列表高度
         public void UpdateToggleList()
         {
             this.ToggleList.Height = 0;
-            
-            for (int i = 0; i < allItem.Count; i++)
-            {
-                this.ToggleList.Height += allItem[i].inputHeight;
-            }
 
-            this.Height = this.Toggle_TextBox.ExtentHeight + 15 + this.ToggleList.Height;
+            if (!IsClose)
+            {
+                for (int i = 0; i < allItem.Count; i++)
+                {
+                    this.ToggleList.Height += allItem[i].inputHeight + 2;
+                }
+
+                this.Height = this.Toggle_TextBox.ExtentHeight + 18 + this.ToggleList.Height;
+            }
         }
 
         public void RemoveItem(ToggleListItem item)

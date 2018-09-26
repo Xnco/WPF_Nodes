@@ -182,6 +182,7 @@
     <Content Include="Images\handle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\mIco.ico" />
     <Content Include="Images\nav.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

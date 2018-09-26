@@ -30,6 +30,8 @@ namespace WpfApp1
 
         public TextBox curBox; // 当前正在输入的Box
 
+        private LocalInfo local;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,7 +39,7 @@ namespace WpfApp1
             instance = this;
 
             // 初始化本地数据
-            LocalInfo.GetSingle();
+            local = LocalInfo.GetSingle();
             allTask = new List<TextToggle>();
 
             // 模拟一个任务小任务
@@ -51,9 +53,27 @@ namespace WpfApp1
             //time.Interval = new TimeSpan(0, 0, 0, 1);
             //time.Start();
 
-            LocalInfo.GetSingle().LoadXML();
-            bool powerBoot = LocalInfo.GetSingle().LoadConfig();
-            PowerBoot.IsChecked = powerBoot;
+            local.LoadXML();
+            if (local.LoadConfig())
+            {
+                PowerBoot.IsChecked = local.powerBootIsOn;
+                this.Left = local.left;
+                this.Top = local.top;
+            }
+            else
+            {
+                local.powerBootIsOn = PowerBoot.IsChecked;
+                local.left = this.Left;
+                local.top = this.Top;
+            }
+
+            // 托盘
+
+            //System.Windows.Forms.NotifyIcon icon = new System.Windows.Forms.NotifyIcon();
+            //icon.Icon = new System.Drawing.Icon("Images/mIco.ico");
+            //icon.Text = "测试托盘";
+            //icon.Visible = true;
+            //icon.Dispose();
         }
 
         // 点击 Add
@@ -92,6 +112,8 @@ namespace WpfApp1
             MessageBoxResult result = MessageBox.Show(this, "确定退出?", "退出便签?", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
+                LocalInfo.GetSingle().ChangedPowerBoot(PowerBoot.IsChecked, this.Left, this.Top);
+
                 this.Close();
             }
         }

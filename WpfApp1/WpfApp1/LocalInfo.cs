@@ -31,6 +31,10 @@ namespace WpfApp1
         // 当前所有任务
         public List<Task> allTask;
 
+        public bool? powerBootIsOn;
+        public double left;
+        public double top;
+
         private LocalInfo()
         {
             allTask = new List<Task>();
@@ -116,9 +120,10 @@ namespace WpfApp1
             {
                 string[] configs = File.ReadAllLines(configPath);
 
-                bool powerBootIsOn = bool.Parse(configs[0].Split(':')[1]);
-
-                return powerBootIsOn;
+                powerBootIsOn = bool.Parse(configs[0].Split(':')[1]);
+                left = double.Parse(configs[1].Split(':')[1]);
+                top = double.Parse(configs[2].Split(':')[1]);
+                return true;
             }
             return false;
         }
@@ -179,10 +184,12 @@ namespace WpfApp1
             xml.Save(path);
         }
 
-        public void ChangedPowerBoot(bool? powerboot)
+        public void ChangedPowerBoot(bool? powerboot, double left = 0, double top = 0)
         {  
             string config = "";
             config += "PowerBoot:" + powerboot;
+            config += "\nleft:" + left;
+            config += "\ntop:" + top;
             File.WriteAllText(configPath, config); // 保存到本地配置
 
             string exeName = "MyNodes";

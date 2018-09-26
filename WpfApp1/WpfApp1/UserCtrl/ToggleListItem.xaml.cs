@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WpfApp1.UserCtrl
 {
@@ -98,10 +99,24 @@ namespace WpfApp1.UserCtrl
         // 输入框文字改变的时候
         private void Item_TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextBox self = sender as TextBox;
-            self.Height = self.ExtentHeight + 15;  // 输入框的大小变化
-            this.Height = self.ExtentHeight + 18;  // Item整体的大小也要变化
+            //TextBox self = sender as TextBox;
+            //MessageBox.Show(Item_TextBox.Text.ToString());
 
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Tick += (s, ee) => {
+                UpdateTextBox();
+                timer.Stop();
+            };
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            timer.Start();
+            
+        }
+
+        public void UpdateTextBox()
+        {
+            Item_TextBox.Height = Item_TextBox.ExtentHeight + 15;  // 输入框的大小变化
+            this.Height = Item_TextBox.ExtentHeight + 18;  // Item整体的大小也要变化
+            
             parent.UpdateToggleList(); // 更新列表
         }
 
