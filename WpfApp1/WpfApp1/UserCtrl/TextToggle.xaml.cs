@@ -231,11 +231,54 @@ namespace WpfApp1.UserCtrl
             }
         }
 
+        // 移除项目
         public void RemoveItem(ToggleListItem item)
         {
             allItem.Remove(item);
             ToggleList.Children.Remove(item);
             UpdateToggleList();
         }
+
+        // 根据完成度排序项目
+        public void SortItem()
+        {
+            // 手动根据名字排序
+            for (int j = 0; j < ToggleList.Children.Count; j++)
+            {
+                for (int i = j; i < ToggleList.Children.Count; i++)
+                {
+                    ToggleListItem item = ToggleList.Children[i] as ToggleListItem;
+                    int first = item.Item_TextBox.Text.IndexOf('.');
+                    if (first > 0)
+                    {
+                        string numText = item.Item_TextBox.Text.Substring(0, first);
+
+                        int num;
+                        if (int.TryParse(numText, out num))
+                        {
+                            if (num == j + 1)
+                            {
+                                //MessageBox.Show("检测到了");
+                                // 放到第 0 个位置
+                                ToggleList.Children.Remove(item);
+                                ToggleList.Children.Insert(j, item);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // 只排序一个
+        public void SortOne(ToggleListItem item, int num)
+        {
+            if (num - 1 < ToggleList.Children.Count)
+            {
+                ToggleList.Children.Remove(item);
+                ToggleList.Children.Insert(num - 1, item);
+            }
+        }
     }
 }
+

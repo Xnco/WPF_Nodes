@@ -109,14 +109,26 @@ namespace WpfApp1.UserCtrl
             };
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             timer.Start();
-            
         }
 
         public void UpdateTextBox()
         {
-            Item_TextBox.Height = Item_TextBox.ExtentHeight + 15;  // 输入框的大小变化
+            Item_TextBox.Height = Item_TextBox.ExtentHeight + 10;  // 输入框的大小变化
             this.Height = Item_TextBox.ExtentHeight + 18;  // Item整体的大小也要变化
-            
+
+            // 判断输入的是不是 *. xxx
+            int first = Item_TextBox.Text.IndexOf('.');
+            if (first > 0)
+            {
+                string numText = Item_TextBox.Text.Substring(0, first);
+                int num;
+                if (int.TryParse(numText, out num))
+                {
+                    //parent.SortItem(); // 给当前列表排序 ?
+                    parent.SortOne(this, num);
+                }
+            }
+               
             parent.UpdateToggleList(); // 更新列表
         }
 

@@ -15,11 +15,11 @@ namespace WpfApp1
 
         public static LocalInfo GetSingle()
         {
-                if (instance== null)
-                {
-                    instance = new LocalInfo();
-                }
-                return instance;
+            if (instance == null)
+            {
+                instance = new LocalInfo();
+            }
+            return instance;
         }
 
         public string dir;
@@ -61,7 +61,7 @@ namespace WpfApp1
 
         public void LoadXML(string path)
         {
-            this.path = path; 
+            this.path = path;
 
             string[] tmp = path.Split('.');
             if (tmp.Length < 1 || tmp[tmp.Length - 1].ToLower() != "xml")
@@ -131,7 +131,7 @@ namespace WpfApp1
         public void SavaXML()
         {
             XmlDocument xml = new XmlDocument();
-            
+
             // 注释版本和编码
             XmlDeclaration dec = xml.CreateXmlDeclaration("1.0", "UTF-8", null);
             xml.AppendChild(dec);
@@ -185,7 +185,7 @@ namespace WpfApp1
         }
 
         public void ChangedPowerBoot(bool? powerboot, double left = 0, double top = 0)
-        {  
+        {
             string config = "";
             config += "PowerBoot:" + powerboot;
             config += "\nleft:" + left;
@@ -195,43 +195,39 @@ namespace WpfApp1
             string exeName = "MyNodes";
             string exePath = System.Windows.Forms.Application.ExecutablePath;
             string keyPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
-            // 判断开机是否启动
-            if (powerboot == true)
+           
+            try
             {
-                try
+                //RegistryKey runs = Registry.LocalMachine.OpenSubKey(keyPath, true);
+                RegistryKey runs = Registry.CurrentUser.OpenSubKey(keyPath, true);
+                if (runs == null)
                 {
-                    //RegistryKey runs = Registry.LocalMachine.OpenSubKey(keyPath, true);
-                    RegistryKey runs = Registry.CurrentUser.OpenSubKey(keyPath, true);
-                    if (runs == null)
-                    {
-                        runs = Registry.LocalMachine.CreateSubKey(keyPath);
-                    }
+                    runs = Registry.LocalMachine.CreateSubKey(keyPath);
+                }
+
+                // 判断开机是否启动
+                if (powerboot == true)
+                {
                     runs.SetValue(exeName, exePath);
-                    runs.Close();
                 }
-                catch (Exception)
+                else
                 {
-                    MessageBox.Show("设置开机启动失败，检测本地注册表是否足够权限访问");
-                    throw;
-                }
-            }
-            else
-            {
-                try
-                {
-                    //RegistryKey runs = Registry.LocalMachine.OpenSubKey(keyPath, true);
-                    RegistryKey runs = Registry.CurrentUser.OpenSubKey(keyPath, true);
-                    if (runs == null)
+                    string[] all = runs.GetValueNames();
+                    for (int i = 0; i < all.Length; i++)
                     {
-                        runs = Registry.LocalMachine.CreateSubKey(keyPath);
+                        if (all[i] == exeName)
+                        {
+                            runs.DeleteValue(exeName);
+                        }
                     }
-                    runs.DeleteValue(exeName);
-                    runs.Close();
                 }
-                catch (Exception)
-                {
-                    throw;
-                }
+
+                runs.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("设置开机启动失败，检测本地注册表是否足够权限访问");
+                throw;
             }
         }
     }
