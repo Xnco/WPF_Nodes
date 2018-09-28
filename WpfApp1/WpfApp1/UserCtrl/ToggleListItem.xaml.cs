@@ -70,11 +70,11 @@ namespace WpfApp1.UserCtrl
         public double inputHeight
         {
             get {
-                if (this.Item_TextBox.Height <36)
+                if (this.Height <36)
                 {
                     return 36;
                 }
-                return this.Item_TextBox.Height;
+                return this.Height;
             }
         }
 

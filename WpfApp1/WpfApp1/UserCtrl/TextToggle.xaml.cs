@@ -123,6 +123,9 @@ namespace WpfApp1.UserCtrl
                 item.Item_TextBox.Visibility = Visibility.Visible;
                 item.Item_TextBox.Focus();
                 item.Item_TextBox.SelectAll();
+
+                //UpdateToggleList(); // 更新列表大小
+
                 timer.Stop();
             };
             timer.Interval = new TimeSpan(0,0,0,0,1);
@@ -224,9 +227,10 @@ namespace WpfApp1.UserCtrl
             {
                 for (int i = 0; i < allItem.Count; i++)
                 {
-                    this.ToggleList.Height += allItem[i].inputHeight + 2;
+                    this.ToggleList.Height += allItem[i].inputHeight;
                 }
 
+                //MessageBox.Show(this.ToggleList.Height.ToString());
                 this.Height = this.Toggle_TextBox.ExtentHeight + 18 + this.ToggleList.Height;
             }
         }
