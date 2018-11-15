@@ -31,9 +31,11 @@
                     <Image Name="Open_Image" Height="14" Width="7" Source="../Images/drop.png"/>
                 </Button>
 
-                <TextBlock Name="Toggle_Text" TextWrapping="Wrap" Text="TextBlock" 
+                <TextBlock x:Name="Toggle_Text" TextWrapping="Wrap" 
                            Margin="33,5,46,8" Visibility="Visible"
-                           MouseLeftButtonDown="Toggle_Text_MouseLeftButtonDown"/>
+                           MouseLeftButtonDown="Toggle_Text_MouseLeftButtonDown"
+                           
+                           ><Run Text="TextBlock"/></TextBlock>
 
                 <TextBox Name="Toggle_TextBox" Text="任务"
                     VerticalAlignment="Top"

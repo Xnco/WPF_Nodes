@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -15,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Microsoft.Win32;
+//using Microsoft.WindowsAPICodePack.Dialogs;
 using WpfApp1.UserCtrl;
 
 namespace WpfApp1
@@ -28,7 +30,7 @@ namespace WpfApp1
 
         public List<TextToggle> allTask;
 
-        public TextBox curBox; // 当前正在输入的Box
+        public TextToggle curTextToggle; // 焦点盒子
 
         private LocalInfo local;
 
@@ -138,13 +140,21 @@ namespace WpfApp1
         // 新建一个大任务
         public TextToggle CreateTask(string text, bool ison = false, bool isclose = false)
         {
-            TextToggle textToggle = new TextToggle(text, ison, isclose, this.MyList);
+            TextToggle textToggle = new TextToggle(text, ison, isclose);
             textToggle.UpdateToggleList();
 
             MyList.Children.Add(textToggle); // 添加到主列表中
             allTask.Add(textToggle);         // 添加到集合中统一管理
 
+            textToggle.onSelect += OnSelectTextToggle;
+
             return textToggle;
+        }
+
+        public void OnSelectTextToggle(TextToggle textToggle)
+        {
+            // 选中焦点盒子
+            curTextToggle = textToggle;
         }
 
         private void SavaBtn_Click(object sender, RoutedEventArgs e)
@@ -161,16 +171,34 @@ namespace WpfApp1
         // 监听按键
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            switch (e.Key)
             {
-                if (curBox != null)
-                {
-                    // 获取当前正在输入的 TextBox
-                    //MessageBox.Show(curBox.Name);
-                }
+                case Key.Tab:
+                    if (curTextToggle != null)
+                    {
+                        // 获取当前选中的大任务 - 相当于点击了 Add 按钮
+                        Button btn = curTextToggle.Toggle_Add;
+                        btn.RaiseEvent(new RoutedEventArgs(Button.ClickEvent, btn));
+                    }
+                    break;
+                case Key.Escape:
+                    if (curTextToggle != null)
+                    {
+                        Button btn = curTextToggle.Open_Btn;
+                        btn.RaiseEvent(new RoutedEventArgs(Button.ClickEvent, btn));
+                    }
+                    break;
+                case Key.Enter:
+                    Button add_btn = ADD;
+                    add_btn.RaiseEvent(new RoutedEventArgs(Button.ClickEvent, add_btn));
+                    break;
+                default:
+
+                    break;
             }
         }
 
+        // 开机启动
         private void PowerBoot_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox cb = sender as CheckBox;

@@ -40,7 +40,7 @@
                       Unchecked="PowerBoot_Checked"
                       />
 
-            <Button Width="18" Height="18" 
+            <Button Name="ADD" Width="18" Height="18" 
                     Margin="0,0,24,0"
                     HorizontalAlignment="Right" VerticalAlignment="Center" 
                     BorderBrush="White" Background="White"

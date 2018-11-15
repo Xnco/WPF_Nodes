@@ -135,11 +135,11 @@ namespace WpfApp1.UserCtrl
         // 获取焦点时
         private void Item_TextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            MainWindow.instance.curBox = sender as TextBox;
+            //MainWindow.instance.curBox = sender as TextBox;
         }
 
-        // 失焦出现文本
-        private void Item_TextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+    // 失焦出现文本
+    private void Item_TextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             TextBox self = sender as TextBox;
             self.Visibility = Visibility.Hidden;
@@ -147,7 +147,7 @@ namespace WpfApp1.UserCtrl
             this.Item_Text.Visibility = Visibility.Visible;
             this.Item_Text.Text = self.Text;
 
-            MainWindow.instance.curBox = null;
+            //MainWindow.instance.curBox = null;
         }
 
         //移除自己
