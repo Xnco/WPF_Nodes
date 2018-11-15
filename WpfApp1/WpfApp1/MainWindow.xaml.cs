@@ -162,6 +162,24 @@ namespace WpfApp1
             LocalInfo.GetSingle().SavaXML();
         }
 
+        private void OpenBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "选择要打开的 XML 文件";
+            openFileDialog.Filter = "xml文件|*.xml";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.FileName = string.Empty;
+            openFileDialog.Multiselect = false;  // 不能选择多个文件
+            openFileDialog.DefaultExt = "xml";
+            //openFileDialog.FileOk += (obj, e1) => {  };
+            if (openFileDialog.ShowDialog() == false)
+            {
+                return;
+            }
+            string path = openFileDialog.FileName; // 获取文件路径
+            LocalInfo.GetSingle().LoadXML(path); // 打开该文件
+        }
+
         public void RemoveTask(TextToggle item)
         {
             allTask.Remove(item);
