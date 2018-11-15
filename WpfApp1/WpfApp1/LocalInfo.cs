@@ -61,7 +61,7 @@ namespace WpfApp1
                 DispatcherTimer timer = new DispatcherTimer();
                 timer.Tick += (sender, e) =>
                 {
-                    btnText.CreateItem("在软件中按 <color=red>鼠标右键</color> 退出软件");
+                    btnText.CreateItem("在软件中按 鼠标右键 退出软件");
                     btnText.CreateItem("点击右上角 + 号添加大任务");
                     btnText.CreateItem("点击右上角 Sava 将任务保存到本地, 不保存下次打开/重启电脑后任务就没了");
                     btnText.CreateItem("点击大任务的 + 号添加子任务");
@@ -71,6 +71,7 @@ namespace WpfApp1
                     btnText.CreateItem("点击子任务的前面的框框会完成子任务");
                     btnText.CreateItem("点击子任务的 - 号会完成子任务");
 
+                    hotKey.CreateItem("Ctrl + S 保存");
                     hotKey.CreateItem("Enter: 新建一个大任务");
                     hotKey.CreateItem("选中一个任务后才能用快捷键");
                     hotKey.CreateItem("ESC: 展开或折叠一个大任务");

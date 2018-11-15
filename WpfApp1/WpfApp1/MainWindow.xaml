@@ -29,10 +29,10 @@
                 <ImageBrush ImageSource="Images/nav.png"></ImageBrush>
             </Grid.Background>
 
-            <Button Width="60" Height="20" Content="Sava" 
+            <Button Width="60" Height="20" Content="Save" 
                     BorderBrush="White" Background="White"
                     TextBlock.Foreground="#22D1FF"
-                    HorizontalAlignment="Left" Name="SavaBtn" Click="SavaBtn_Click"/>
+                    HorizontalAlignment="Left" Name="SaveBtn" Click="SavaBtn_Click"/>
 
             <Button Width="60" Height="20" Content="Open" 
                     BorderBrush="White" Background="White"

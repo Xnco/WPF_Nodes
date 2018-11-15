@@ -157,11 +157,13 @@ namespace WpfApp1
             curTextToggle = textToggle;
         }
 
+        // 保存按钮
         private void SavaBtn_Click(object sender, RoutedEventArgs e)
         {
             LocalInfo.GetSingle().SavaXML();
         }
 
+        // 打开文件按钮
         private void OpenBtn_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -209,6 +211,13 @@ namespace WpfApp1
                 case Key.Enter:
                     Button add_btn = ADD;
                     add_btn.RaiseEvent(new RoutedEventArgs(Button.ClickEvent, add_btn));
+                    break;
+                case Key.S:
+                    if (e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Control))
+                    {
+                        Button save_btn = SaveBtn;
+                        save_btn.RaiseEvent(new RoutedEventArgs(Button.ClickEvent, save_btn));
+                    }
                     break;
                 default:
 
