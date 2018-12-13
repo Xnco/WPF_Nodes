@@ -33,6 +33,7 @@ namespace WpfApp1
         public TextToggle curTextToggle; // 焦点盒子
 
         private LocalInfo local;
+        System.Windows.Forms.NotifyIcon icon;
 
         public MainWindow()
         {
@@ -70,12 +71,26 @@ namespace WpfApp1
             }
 
             // 托盘
-
-            //System.Windows.Forms.NotifyIcon icon = new System.Windows.Forms.NotifyIcon();
-            //icon.Icon = new System.Drawing.Icon("Images/mIco.ico");
-            //icon.Text = "测试托盘";
-            //icon.Visible = true;
-            //icon.Dispose();
+            icon = new System.Windows.Forms.NotifyIcon();
+            icon.Icon = new System.Drawing.Icon("Images/mIco.ico");
+            icon.Text = "便签";
+            icon.Visible = true;
+            icon.Click += (obj, e) =>
+            {
+                //    if (this.WindowState == WindowState.Normal)
+                //    {
+                //        this.WindowState = WindowState.Minimized;
+                //    }
+                //    else
+                //    if (this.WindowState == WindowState.Minimized)
+                //    {
+                //        //    如果当前是最小化，就前置
+                //        this.WindowState = WindowState.Normal;
+                //    }
+                this.Topmost = true;
+                this.Topmost = false;
+            };
+            
         }
 
         // 点击 Add
@@ -115,7 +130,7 @@ namespace WpfApp1
             if (result == MessageBoxResult.Yes)
             {
                 LocalInfo.GetSingle().ChangedPowerBoot(PowerBoot.IsChecked, this.Left, this.Top);
-
+                icon.Dispose();
                 this.Close();
             }
         }
