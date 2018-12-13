@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:WpfApp1"
     xmlns:UserCtrl="clr-namespace:WpfApp1.UserCtrl" x:Class="WpfApp1.MainWindow"
-    ShowInTaskbar="True"
+    ShowInTaskbar="False"
     mc:Ignorable="d"
     Title="MyNodes"
     Height="270" Width="300" 
