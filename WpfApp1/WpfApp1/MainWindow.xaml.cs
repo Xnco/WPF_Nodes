@@ -62,6 +62,7 @@ namespace WpfApp1
                 PowerBoot.IsChecked = local.powerBootIsOn;
                 this.Left = local.left;
                 this.Top = local.top;
+                this.Height = local.height;
             }
             else
             {
@@ -129,7 +130,7 @@ namespace WpfApp1
             MessageBoxResult result = MessageBox.Show(this, "确定退出?", "退出便签?", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
-                LocalInfo.GetSingle().ChangedPowerBoot(PowerBoot.IsChecked, this.Left, this.Top);
+                LocalInfo.GetSingle().ChangedPowerBoot(PowerBoot.IsChecked, this.Left, this.Top, this.Height);
                 icon.Dispose();
                 this.Close();
             }

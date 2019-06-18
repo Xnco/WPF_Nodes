@@ -10,8 +10,8 @@
     Title="MyNodes"
     Height="270" Width="300" 
     MinHeight="270" MinWidth="300" 
-    MaxHeight="700"
-    ResizeMode="NoResize"
+    MaxHeight="700" MaxWidth="300"
+    ResizeMode="CanResize"
     WindowStyle="None"
     Background="#F1F1F1"
     
@@ -21,8 +21,11 @@
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     
     AllowDrop="True"
-    Drop="Window_Drop"
+    Drop="Window_Drop" Visibility="Visible" Opacity="0.995"
 >
+    <Window.Effect>
+        <DropShadowEffect BlurRadius="15" Opacity="0.5" ShadowDepth="1"/>
+    </Window.Effect>
     <Grid>
         <Grid Name="Title" VerticalAlignment="Top" Height="36">
             <Grid.Background>
@@ -40,9 +43,9 @@
                     HorizontalAlignment="Left" Name="OpenBtn" Click="OpenBtn_Click" Margin="65,8,0,8"/>
 
             <CheckBox Name="PowerBoot" Content="开机自启" 
-                      Margin="142,10,90,11" VerticalAlignment="Center" HorizontalAlignment="Center"
+                      Margin="148,9,64,12" VerticalAlignment="Center" HorizontalAlignment="Center"
                       Checked="PowerBoot_Checked"
-                      Unchecked="PowerBoot_Checked"
+                      Unchecked="PowerBoot_Checked" Width="80"
                       />
 
             <Button Name="ADD" Width="18" Height="18" 
@@ -56,7 +59,11 @@
         </Grid>
 
         <Grid Name="main">
-            <ScrollViewer Margin="0,36,0,0" Focusable="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="23*"/>
+                <ColumnDefinition Width="123*"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Margin="0,36,0,0" Focusable="False" Grid.ColumnSpan="2">
                 <StackPanel x:Name="MyList" HorizontalAlignment="Left" VerticalAlignment="Top"
                     SizeChanged="MyList_SizeChanged" >
 

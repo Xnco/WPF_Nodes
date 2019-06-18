@@ -82,16 +82,18 @@ namespace WpfApp1.UserCtrl
                     isClose = value;
                     if (isClose)
                     {
-                        //this.Open_Image.Visibility = Visibility.Hidden;
-                        this.ToggleList.Visibility = Visibility.Hidden;
-                        this.Height = Toggle_TextBox.ExtentHeight + 10;
+                        // 关闭
+                        Open_Image.RenderTransform = new RotateTransform(-90);
+                        ToggleList.Visibility = Visibility.Hidden;
+                        Height = Toggle_TextBox.ExtentHeight + 10;
                     }
                     else
                     {
-                        //this.Open_Image.Visibility = Visibility.Visible;
-                        this.ToggleList.Visibility = Visibility.Visible;
+                        // 打开
+                        Open_Image.RenderTransform = new RotateTransform(0);
+                        ToggleList.Visibility = Visibility.Visible;
                         UpdateToggleList();
-                        this.Height = Toggle_TextBox.ExtentHeight + 10 + this.ToggleList.Height;
+                        Height = Toggle_TextBox.ExtentHeight + 10 + this.ToggleList.Height;
                     }
                 }
             }
@@ -109,8 +111,25 @@ namespace WpfApp1.UserCtrl
             //this.Toggle.Visibility = Visibility.Hidden;
             if (MainWindow.instance != null)
             {
-                MainWindow.instance.RemoveTask(this); // 移除自己
+                // 不直接移除, 任务全部完成才直接移除, 任务没有完成, 需要二次弹窗确认
+                if (IsOn)
+                {
+                    DeleteSelf();
+                }
+                else
+                {
+                    MessageBoxResult result = MessageBox.Show(MainWindow.instance, "此任务并没有完成, 是否确定删除任务?", "确定删除大任务?", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        DeleteSelf();
+                    }
+                }
             }   
+        }
+
+        private void DeleteSelf()
+        {
+            MainWindow.instance.RemoveTask(this); // 移除自己
         }
 
         // 点击添加子任务

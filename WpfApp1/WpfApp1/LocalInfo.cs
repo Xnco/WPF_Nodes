@@ -34,6 +34,7 @@ namespace WpfApp1
         public bool? powerBootIsOn;
         public double left;
         public double top;
+        public double height;
 
         private LocalInfo()
         {
@@ -152,6 +153,7 @@ namespace WpfApp1
                 powerBootIsOn = bool.Parse(configs[0].Split(':')[1]);
                 left = double.Parse(configs[1].Split(':')[1]);
                 top = double.Parse(configs[2].Split(':')[1]);
+                height = double.Parse(configs[3].Split(':')[1]);
                 return true;
             }
             return false;
@@ -213,12 +215,13 @@ namespace WpfApp1
             xml.Save(path);
         }
 
-        public void ChangedPowerBoot(bool? powerboot, double left = 0, double top = 0)
+        public void ChangedPowerBoot(bool? powerboot, double left = 0, double top = 0, double height = 270)
         {
             string config = "";
             config += "PowerBoot:" + powerboot;
             config += "\nleft:" + left;
             config += "\ntop:" + top;
+            config += "\nheight:" + height;
             File.WriteAllText(configPath, config); // 保存到本地配置
 
             string exeName = "MyNodes";
