@@ -23,12 +23,6 @@
 
 ***
 
-#### 1.0预览图
-![Image Text](https://github.com/Xnco/WPF_Nodes/blob/master/Show/Nodes1.0.gif)
-
-#### 初版预览
-![Image Text](https://github.com/Xnco/WPF_Nodes/blob/master/Show/MyNodes.gif)
-
 ### **版本说明**
 
 #### 1.17 [下载点这里](https://github.com/Xnco/WPF_Nodes/tree/master/Build)
@@ -56,3 +50,11 @@
 
 #### 0.1 初版
 1. 仅支持增加大任务和小人物
+
+***
+
+#### 1.0预览图
+![Image Text](https://github.com/Xnco/WPF_Nodes/blob/master/Show/Nodes1.0.gif)
+
+#### 初版预览
+![Image Text](https://github.com/Xnco/WPF_Nodes/blob/master/Show/MyNodes.gif)
