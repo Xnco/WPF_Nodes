@@ -11,8 +11,9 @@
     Height="270" Width="300" 
     MinHeight="270" MinWidth="300" 
     MaxHeight="700" MaxWidth="300"
-    ResizeMode="CanResize"
     WindowStyle="None"
+    AllowsTransparency="True"
+    ResizeMode="CanResizeWithGrip"
     Background="#F1F1F1"
     
     KeyDown="Window_KeyDown"

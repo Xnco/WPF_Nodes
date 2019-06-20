@@ -24,32 +24,35 @@
 ***
 
 ### **版本说明**
+#### 1.18 [下载点这里](https://github.com/Xnco/WPF_Nodes/tree/master/Build)
+* Update: 调整高度仅限右下角
+* --Bug: 去掉上方白边
 
-#### 1.17 [下载点这里](https://github.com/Xnco/WPF_Nodes/tree/master/Build)
-1. Add: 展开大任务的时候箭头旋转
-2. Add: 多次误操作得到血的教训, 如果大任务没有完成, 在删除的时候需要二次确认才能删除
-3. Add: 增加图标和右下角Icon, 点击Icon能将窗口置顶
-4. Update: 手动调整窗口的高度
+#### 1.17
+* Add: 展开大任务的时候箭头旋转
+* Add: 多次误操作得到血的教训, 如果大任务没有完成, 在删除的时候需要二次确认才能删除
+* Add: 增加图标和右下角Icon, 点击Icon能将窗口置顶
+* Update: 手动调整窗口的高度
 
 #### 1.14
-1. Add: 增加 <font color=#DC143C>打开文件</font> 功能, 能够打开某个 xml 文件并转换成任务
-2. Add: 添加说明XML, 添加一系列快捷键, 第一次打开才会有
-3. Add: 根据 *. 给子任务排序的功能<br />
+* Add: 增加 <font color=#DC143C>打开文件</font> 功能, 能够打开某个 xml 文件并转换成任务
+* Add: 添加说明XML, 添加一系列快捷键, 第一次打开才会有
+* Add: 根据 *. 给子任务排序的功能<br />
     ><font color="green">eg: "1. xxxx" //就会把这个任务放到最前面的位置</font>
 
 #### 1.10
-1. Add: 开机启动，主页面加入开机启动开关，<font color=#DC143C>如果更换程序路径要重新开启此功能</font>
+* Add: 开机启动，主页面加入开机启动开关，<font color=#DC143C>如果更换程序路径要重新开启此功能</font>
 
 #### 1.01
-1. Add: 直接拖拽适配的 XML 文件到窗口可以直接解析 XML, 对应 XML 格式见 [XML文件夹](https://github.com/Xnco/WPF_Nodes/tree/master/XML)中的模板
+* Add: 直接拖拽适配的 XML 文件到窗口可以直接解析 XML, 对应 XML 格式见 [XML文件夹](https://github.com/Xnco/WPF_Nodes/tree/master/XML)中的模板
 
 #### 1.00
-1. Update: 更新了一版 UI界面
-2. Add: 删除功能, 能删除小任务和大任务
-3. Add: 增加存档功能, 点击Sava按钮能保存所有任务信息到本地, 路径为 <font color=#DC143C size=4>*" \*/我的文档/MyNodes/ "*</font>
+* Update: 更新了一版 UI界面
+* Add: 删除功能, 能删除小任务和大任务
+* Add: 增加存档功能, 点击Sava按钮能保存所有任务信息到本地, 路径为 <font color=#DC143C size=4>*" \*/我的文档/MyNodes/ "*</font>
 
 #### 0.1 初版
-1. 仅支持增加大任务和小人物
+* 仅支持增加大任务和小人物
 
 ***
 
