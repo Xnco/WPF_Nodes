@@ -24,7 +24,12 @@
 ***
 
 ### **版本说明**
-#### 1.18 [下载点这里](https://github.com/Xnco/WPF_Nodes/tree/master/Build)
+#### 1.19 [下载点这里](https://github.com/Xnco/WPF_Nodes/tree/master/Build)
+* Update: 如果一个任务没前缀, 完成任务会将任务放到最后. 有前缀的话位置不变
+* Update: 任务取消完成, 放在未完成的任务之前
+* Update: 新增任务不一定添加到最后, 如果存在前缀任务, 则放到最后一个前缀之后, 如果都没前缀, 也放在未完成的任务之前
+
+#### 1.18 
 * Update: 调整高度仅限右下角
 * --Bug: 去掉上方白边
 

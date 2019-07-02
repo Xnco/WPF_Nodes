@@ -196,7 +196,7 @@ namespace WpfApp1
                 tmpTask.AppendChild(items);
 
                 // 创建小任务
-                foreach (var item in tmpTextToggle.allItem)
+                foreach (var item in tmpTextToggle.allItems)
                 {
                     // 创建 Item
                     var tempItem = xml.CreateElement("Item");

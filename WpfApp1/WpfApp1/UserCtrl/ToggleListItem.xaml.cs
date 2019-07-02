@@ -82,6 +82,24 @@ namespace WpfApp1.UserCtrl
         private void OnClickItem_Button(object sender, RoutedEventArgs e)
         {
             IsOn = !IsOn;
+
+            int num = GetTextIndex();
+            if (num > 0)
+            {
+                // 有前缀位置就不变
+                return;
+            }
+
+            if (IsOn)
+            {
+                // 完成任务将自己放到最后去
+                parent.MoveItemToListLast(this);
+            }
+            else
+            {
+                // 解除已完成将返回之前的位置
+                SetItemIndexByText();
+            }
         }
 
         // 点击文本出现输入框
@@ -105,6 +123,7 @@ namespace WpfApp1.UserCtrl
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += (s, ee) => {
                 UpdateTextBox();
+                SetItemIndexByText();
                 timer.Stop();
             };
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
@@ -115,8 +134,10 @@ namespace WpfApp1.UserCtrl
         {
             Item_TextBox.Height = Item_TextBox.ExtentHeight + 10;  // 输入框的大小变化
             this.Height = Item_TextBox.ExtentHeight + 18;  // Item整体的大小也要变化
+        }
 
-            // 判断输入的是不是 *. xxx
+        public int GetTextIndex()
+        {
             int first = Item_TextBox.Text.IndexOf('.');
             if (first > 0)
             {
@@ -124,12 +145,21 @@ namespace WpfApp1.UserCtrl
                 int num;
                 if (int.TryParse(numText, out num))
                 {
-                    //parent.SortItem(); // 给当前列表排序 ?
-                    parent.SortOne(this, num);
+                    return num;
                 }
             }
-               
-            parent.UpdateToggleList(); // 更新列表
+            return -1;
+        }
+
+        private void SetItemIndexByText()
+        {
+            // 判断输入的是不是 *. xxx
+            int num = GetTextIndex();
+            if (num > 0)
+            {
+                parent.MoveItemToList(this, num - 1);
+                parent.UpdateToggleList(); // 更新列表
+            }
         }
 
         // 获取焦点时
@@ -138,8 +168,8 @@ namespace WpfApp1.UserCtrl
             //MainWindow.instance.curBox = sender as TextBox;
         }
 
-    // 失焦出现文本
-    private void Item_TextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        // 失焦出现文本
+        private void Item_TextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             TextBox self = sender as TextBox;
             self.Visibility = Visibility.Hidden;

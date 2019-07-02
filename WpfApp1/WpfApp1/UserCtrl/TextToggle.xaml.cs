@@ -22,7 +22,7 @@ namespace WpfApp1.UserCtrl
     public partial class TextToggle : UserControl
     {
         //public Panel parent;
-        public List<ToggleListItem> allItem;
+        public List<ToggleListItem> allItems;
 
         private bool isOn;
         private bool isClose;
@@ -36,7 +36,7 @@ namespace WpfApp1.UserCtrl
         public TextToggle(string text, bool varIsOn, bool varIsClose)
         {
             //parent = p;
-            allItem = new List<ToggleListItem>();
+            allItems = new List<ToggleListItem>();
 
             InitializeComponent();
 
@@ -136,7 +136,7 @@ namespace WpfApp1.UserCtrl
         private void Toggle_Add_Click(object sender, RoutedEventArgs e)
         {
             // 新建一个新的子项目
-            var item = CreateItem("子任务" + (this.ToggleList.Children.Count + 1));
+            var item = CreateItem_Ex("子任务" + (this.ToggleList.Children.Count + 1));
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += (s, ee) => {
@@ -158,9 +158,6 @@ namespace WpfApp1.UserCtrl
         {
             var textItem = new ToggleListItem(this, text, ison);
 
-            this.ToggleList.Children.Add(textItem); // 添加到自己的列表中
-            allItem.Add(textItem);  // 添加到集合中统一管理
-
             // 添加子项目就自动展开, 自动结束完成状态
             if (isOpen)
             {
@@ -169,9 +166,30 @@ namespace WpfApp1.UserCtrl
             }
 
             textItem.UpdateTextBox();
-            UpdateToggleList(); // 更新列表大小
+            //UpdateToggleList(); // 更新列表大小
+
+            AddToItemList(textItem);
 
             return textItem;
+        }
+
+        public ToggleListItem CreateItem_Ex(string text, bool ison = false, bool isOpen = true)
+        {
+            ToggleListItem tempItem = CreateItem(text, ison, isOpen);
+            //int index = allItems.FindIndex((varItem)=> varItem.IsOn);
+            int index = allItems.FindLastIndex((varItem) => varItem.GetTextIndex() > 0);
+            if (index != -1)
+            {
+                // 存在前缀任务, 移动到最后一个前缀的后面
+                MoveItemToList(tempItem, index + 1);   
+            }
+            else
+            {
+                // 不存在前缀, 移动到第一个完成任务的前面
+                index = allItems.FindIndex((varItem) => varItem.IsOn);
+                MoveItemToList(tempItem, index);
+            }
+            return tempItem;
         }
 
         // 文本布局更新
@@ -247,22 +265,14 @@ namespace WpfApp1.UserCtrl
 
             if (!IsClose)
             {
-                for (int i = 0; i < allItem.Count; i++)
+                for (int i = 0; i < allItems.Count; i++)
                 {
-                    this.ToggleList.Height += allItem[i].inputHeight;
+                    this.ToggleList.Height += allItems[i].inputHeight;
                 }
 
                 //MessageBox.Show(this.ToggleList.Height.ToString());
                 this.Height = this.Toggle_TextBox.ExtentHeight + 18 + this.ToggleList.Height;
             }
-        }
-
-        // 移除项目
-        public void RemoveItem(ToggleListItem item)
-        {
-            allItem.Remove(item);
-            ToggleList.Children.Remove(item);
-            UpdateToggleList();
         }
 
         // 根据完成度排序项目
@@ -295,15 +305,73 @@ namespace WpfApp1.UserCtrl
                 }
             }
         }
-
-        // 只排序一个
-        public void SortOne(ToggleListItem item, int num)
+ 
+        // 添加一个任务到末尾
+        public void AddToItemList(ToggleListItem item)
         {
-            if (num - 1 < ToggleList.Children.Count)
+            if (item == null) return;
+
+            ToggleList.Children.Add(item);
+            allItems.Add(item);  // 添加到集合中统一管理
+
+            UpdateToggleList();
+        }
+
+        // 添加一个任务到指定位置
+        public void AddToItemList(ToggleListItem item, int index)
+        {
+            if (item == null) return;
+
+            if (index > allItems.Count - 1)
             {
-                ToggleList.Children.Remove(item);
-                ToggleList.Children.Insert(num - 1, item);
+                AddToItemList(item);
             }
+            else if (index < 0)
+            {
+                ToggleList.Children.Insert(0, item);
+                allItems.Insert(0, item);
+            }
+            else
+            {
+                ToggleList.Children.Insert(index, item);
+                allItems.Insert(index, item);
+
+                UpdateToggleList();
+            }
+        }
+
+        // 将一个任务移动到指定位置(index)
+        public void MoveItemToList(ToggleListItem item, int index)
+        {
+            RemoveItem(item);
+
+            if (index > allItems.Count - 1)
+            {
+                // 越界就放到最后
+                AddToItemList(item);
+            }
+            else
+            {
+                AddToItemList(item, index);
+            }
+        }
+
+        // 将一个任务移动至最后
+        public void MoveItemToListLast(ToggleListItem item)
+        {
+            if (item == null) return;
+
+            RemoveItem(item);
+            AddToItemList(item);
+        }
+
+        // 移除项目
+        public void RemoveItem(ToggleListItem item)
+        {
+            allItems.Remove(item);
+            ToggleList.Children.Remove(item);
+
+            UpdateToggleList();
         }
     }
 }
