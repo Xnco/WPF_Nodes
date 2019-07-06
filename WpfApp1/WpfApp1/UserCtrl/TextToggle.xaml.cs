@@ -186,8 +186,15 @@ namespace WpfApp1.UserCtrl
             else
             {
                 // 不存在前缀, 移动到第一个完成任务的前面
-                index = allItems.FindIndex((varItem) => varItem.IsOn);
-                MoveItemToList(tempItem, index);
+                int completeIndex = allItems.FindIndex((varItem) => varItem.IsOn);
+                if (completeIndex == -1)
+                {
+                    MoveItemToListLast(tempItem);
+                }
+                else
+                {
+                    MoveItemToList(tempItem, completeIndex);
+                }
             }
             return tempItem;
         }
@@ -306,7 +313,7 @@ namespace WpfApp1.UserCtrl
             }
         }
  
-        // 添加一个任务到末尾
+        // Add: 添加一个任务到所有任务末尾
         public void AddToItemList(ToggleListItem item)
         {
             if (item == null) return;
@@ -317,7 +324,7 @@ namespace WpfApp1.UserCtrl
             UpdateToggleList();
         }
 
-        // 添加一个任务到指定位置
+        // Add: 添加一个任务到指定位置
         public void AddToItemList(ToggleListItem item, int index)
         {
             if (item == null) return;
@@ -340,7 +347,7 @@ namespace WpfApp1.UserCtrl
             }
         }
 
-        // 将一个任务移动到指定位置(index)
+        // Move: 将一个任务移动到指定位置(index)
         public void MoveItemToList(ToggleListItem item, int index)
         {
             RemoveItem(item);
@@ -356,7 +363,7 @@ namespace WpfApp1.UserCtrl
             }
         }
 
-        // 将一个任务移动至最后
+        // Move: 将一个任务移动至最后
         public void MoveItemToListLast(ToggleListItem item)
         {
             if (item == null) return;
@@ -365,7 +372,18 @@ namespace WpfApp1.UserCtrl
             AddToItemList(item);
         }
 
-        // 移除项目
+        // Move: 将一个任务移动到无序任务顶部
+        public void MoveItemToDisorderTop(ToggleListItem item)
+        {
+            int index = allItems.FindIndex((varItem) => varItem.GetTextIndex() < 0);
+            if (index == -1)
+            {
+                return;
+            }
+            MoveItemToList(item, index);
+        }
+
+        // Remove: 移除项目
         public void RemoveItem(ToggleListItem item)
         {
             allItems.Remove(item);

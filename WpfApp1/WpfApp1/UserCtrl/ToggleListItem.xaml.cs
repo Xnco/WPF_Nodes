@@ -97,8 +97,8 @@ namespace WpfApp1.UserCtrl
             }
             else
             {
-                // 解除已完成将返回之前的位置
-                SetItemIndexByText();
+                // 解除已完成将返回顶部的位置
+                parent.MoveItemToDisorderTop(this);
             }
         }
 
@@ -123,7 +123,10 @@ namespace WpfApp1.UserCtrl
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += (s, ee) => {
                 UpdateTextBox();
-                SetItemIndexByText();
+
+                // 输入完后判断是否有序
+                int num = GetTextIndex();
+                SetItemIndexByText(num);
                 timer.Stop();
             };
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
@@ -151,10 +154,9 @@ namespace WpfApp1.UserCtrl
             return -1;
         }
 
-        private void SetItemIndexByText()
+        private void SetItemIndexByText(int num)
         {
             // 判断输入的是不是 *. xxx
-            int num = GetTextIndex();
             if (num > 0)
             {
                 parent.MoveItemToList(this, num - 1);
