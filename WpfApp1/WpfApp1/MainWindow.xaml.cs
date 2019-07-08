@@ -225,8 +225,10 @@ namespace WpfApp1
                     }
                     break;
                 case Key.Enter:
+                    /*
                     Button add_btn = ADD;
                     add_btn.RaiseEvent(new RoutedEventArgs(Button.ClickEvent, add_btn));
+                    */
                     break;
                 case Key.S:
                     if (e.KeyboardDevice.Modifiers.HasFlag(ModifierKeys.Control))

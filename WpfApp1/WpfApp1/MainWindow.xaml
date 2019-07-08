@@ -41,13 +41,16 @@
             <Button Width="60" Height="20" Content="Open" 
                     BorderBrush="White" Background="White"
                     TextBlock.Foreground="#22D1FF"
-                    HorizontalAlignment="Left" Name="OpenBtn" Click="OpenBtn_Click" Margin="65,8,0,8"/>
+                    HorizontalAlignment="Left" 
+                    Name="OpenBtn" 
+                    Click="OpenBtn_Click" 
+                    Margin="65,8,0,8">
+            </Button>
 
-            <CheckBox Name="PowerBoot" Content="开机自启" 
-                      Margin="148,9,64,12" VerticalAlignment="Center" HorizontalAlignment="Center"
-                      Checked="PowerBoot_Checked"
-                      Unchecked="PowerBoot_Checked" Width="80"
-                      />
+            <CheckBox   Name="PowerBoot" Content="开机自启" 
+                        Margin="148,9,64,12" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        Checked="PowerBoot_Checked"
+                        Unchecked="PowerBoot_Checked" Width="80"/>
 
             <Button Name="ADD" Width="18" Height="18" 
                     Margin="0,0,24,0"
@@ -55,7 +58,7 @@
                     BorderBrush="White" Background="White"
                     Focusable="False"
                     Click="Button_Click" >
-                <Image Source="Images/addtitle.png"></Image>
+                    <Image Source="Images/addtitle.png"></Image>
             </Button>
         </Grid>
 
@@ -67,7 +70,6 @@
             <ScrollViewer Margin="0,36,0,0" Focusable="False" Grid.ColumnSpan="2">
                 <StackPanel x:Name="MyList" HorizontalAlignment="Left" VerticalAlignment="Top"
                     SizeChanged="MyList_SizeChanged" >
-
                 </StackPanel>
             </ScrollViewer>
 

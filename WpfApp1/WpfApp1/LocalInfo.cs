@@ -73,7 +73,7 @@ namespace WpfApp1
                     btnText.CreateItem("点击子任务的 - 号会完成子任务");
 
                     hotKey.CreateItem("Ctrl + S 保存");
-                    hotKey.CreateItem("Enter: 新建一个大任务");
+                    // hotKey.CreateItem("Enter: 新建一个大任务");
                     hotKey.CreateItem("选中一个任务后才能用快捷键");
                     hotKey.CreateItem("ESC: 展开或折叠一个大任务");
                     hotKey.CreateItem("Tab: 新建一个子任务");
