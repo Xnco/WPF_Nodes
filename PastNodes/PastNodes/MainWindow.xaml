@@ -13,9 +13,9 @@
         </Grid.ColumnDefinitions>
 
         <TreeView x:Name="taskRoot" Grid.Column="0" Margin="0">
-            <TreeViewItem Margin="0">
+            <TreeViewItem Margin="0" >
                 <TreeViewItem.Header>
-                    <NodeControl:TaskHeader x:Name="TestTask" Margin="0"/>
+                    <NodeControl:TaskHeader x:Name="TestTask" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
                 </TreeViewItem.Header>
             </TreeViewItem>
         </TreeView>
