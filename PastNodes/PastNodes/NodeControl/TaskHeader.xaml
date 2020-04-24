@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:PastNodes.NodeControl"
              mc:Ignorable="d" 
              MinHeight="36"
+             MinWidth="350"
              d:DesignHeight="36" d:DesignWidth="300" >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -21,8 +22,11 @@
 
         <!--<TextBlock Grid.Column="1" Visibility="Hidden" Text="{Binding ElementName=Input, Path=Text}">
         </TextBlock>-->
-        <RichTextBox x:Name="Input" Grid.Column="1" Visibility="Visible" TextChanged="Input_TextChanged">
-            
+        <RichTextBox x:Name="Input" 
+                     Grid.Column="1" 
+                     Visibility="Visible" 
+                     TextChanged="Input_TextChanged" 
+                     FontSize="20">
         </RichTextBox>
         
         <Canvas Grid.Column="2">

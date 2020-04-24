@@ -15,7 +15,7 @@
         <TreeView x:Name="taskRoot" Grid.Column="0" Margin="0">
             <TreeViewItem Margin="0" >
                 <TreeViewItem.Header>
-                    <NodeControl:TaskHeader Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"/>
+                    <NodeControl:TaskHeader Width="375"/>
                 </TreeViewItem.Header>
             </TreeViewItem>
         </TreeView>

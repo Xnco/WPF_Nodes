@@ -127,8 +127,15 @@ namespace WpfApp1
         // 功能暂定 - 右键退出
         private void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show(this, "确定退出?", "退出便签?", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show(this, "YES=保存, NO=不保存, Cancel=不退出", "退出并自动保存吗?", MessageBoxButton.YesNoCancel);
             if (result == MessageBoxResult.Yes)
+            {
+                LocalInfo.GetSingle().SavaXML();
+                LocalInfo.GetSingle().ChangedPowerBoot(PowerBoot.IsChecked, this.Left, this.Top, this.Height);
+                icon.Dispose();
+                this.Close();
+            }
+            else if(result == MessageBoxResult.No)
             {
                 LocalInfo.GetSingle().ChangedPowerBoot(PowerBoot.IsChecked, this.Left, this.Top, this.Height);
                 icon.Dispose();
