@@ -166,7 +166,6 @@ namespace WpfApp1.UserCtrl
             }
 
             textItem.UpdateTextBox();
-            //UpdateToggleList(); // 更新列表大小
 
             AddToItemList(textItem);
 
@@ -244,17 +243,18 @@ namespace WpfApp1.UserCtrl
         private void Toggle_TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox self = sender as TextBox;
-            self.Height = self.ExtentHeight + 10;  // 整体大小 = 可视区域大小 + 10
+            self.Height = self.ExtentHeight + AppConfig.TextToggle_ExtentHeight;  // 整体大小 = 可视区域大小 + 10
 
             //MessageBox.Show("Changed" + self.Height);
 
             if (this.ToggleList == null || IsClose)
             {
-                this.Height = self.ExtentHeight + 10;
+                this.Height = self.ExtentHeight + AppConfig.TextToggle_ExtentHeight;
             }
             else
             {
-                this.Height = self.ExtentHeight + 10 + this.ToggleList.Height;
+                this.Height = self.ExtentHeight + AppConfig.TextToggle_ExtentHeight 
+                                                + this.ToggleList.Height;
             }
 
         }
@@ -263,6 +263,8 @@ namespace WpfApp1.UserCtrl
         private void Open_Btn_Click(object sender, RoutedEventArgs e)
         {
             IsClose = !IsClose;
+
+            UpdateToggleList();
         }
 
         // 更新列表高度
@@ -278,7 +280,7 @@ namespace WpfApp1.UserCtrl
                 }
 
                 //MessageBox.Show(this.ToggleList.Height.ToString());
-                this.Height = this.Toggle_TextBox.ExtentHeight + 18 + this.ToggleList.Height;
+                this.Height = this.Toggle_TextBox.ExtentHeight + AppConfig.TextToggle_LineHeight + this.ToggleList.Height;
             }
         }
 

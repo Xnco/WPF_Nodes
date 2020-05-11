@@ -15,8 +15,14 @@
         <TreeView x:Name="taskRoot" Grid.Column="0" Margin="0">
             <TreeViewItem Margin="0" >
                 <TreeViewItem.Header>
-                    <NodeControl:TaskHeader Width="375"/>
+                    <NodeControl:TaskHeader/>
                 </TreeViewItem.Header>
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <NodeControl:TaskHeader/>
+                    </TreeViewItem.Header>
+                    <NodeControl:TaskHeader/>
+                </TreeViewItem>
             </TreeViewItem>
         </TreeView>
     </Grid>

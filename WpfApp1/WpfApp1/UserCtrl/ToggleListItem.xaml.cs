@@ -70,9 +70,9 @@ namespace WpfApp1.UserCtrl
         public double inputHeight
         {
             get {
-                if (this.Height <36)
+                if (this.Height < AppConfig.ToggleListItem_InputMinHeight)
                 {
-                    return 36;
+                    return AppConfig.ToggleListItem_InputMinHeight;
                 }
                 return this.Height;
             }
@@ -135,8 +135,10 @@ namespace WpfApp1.UserCtrl
 
         public void UpdateTextBox()
         {
-            Item_TextBox.Height = Item_TextBox.ExtentHeight + 10;  // 输入框的大小变化
-            this.Height = Item_TextBox.ExtentHeight + 18;  // Item整体的大小也要变化
+            Item_TextBox.Height = Item_TextBox.ExtentHeight + AppConfig.ToggleListItem_ExtentHeight;  // 输入框的大小变化
+            this.Height = Item_TextBox.ExtentHeight + AppConfig.ToggleListItem_LineHeight;  // Item整体的大小也要变化
+
+            parent.UpdateToggleList();
         }
 
         public int GetTextIndex()

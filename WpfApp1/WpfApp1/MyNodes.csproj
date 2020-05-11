@@ -92,6 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppConfig.cs" />
     <Compile Include="LocalInfo.cs" />
     <Compile Include="UserCtrl\TextToggle.xaml.cs">
       <DependentUpon>TextToggle.xaml</DependentUpon>

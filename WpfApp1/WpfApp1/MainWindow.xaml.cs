@@ -60,8 +60,24 @@ namespace WpfApp1
             if (local.LoadConfig())
             {
                 PowerBoot.IsChecked = local.powerBootIsOn;
-                this.Left = local.left;
-                this.Top = local.top;
+                if (SystemParameters.WorkArea.Width < local.left + this.Width)
+                {
+                    this.Left = 0;
+                }
+                else
+                {
+                    this.Left = local.left;
+                }
+
+                if (SystemParameters.WorkArea.Height < local.top + this.Height)
+                {
+                    this.Top = 0;
+                }
+                else
+                {
+                    this.Top = local.top;
+                }
+                
                 this.Height = local.height;
             }
             else
@@ -137,7 +153,7 @@ namespace WpfApp1
             }
             else if(result == MessageBoxResult.No)
             {
-                LocalInfo.GetSingle().ChangedPowerBoot(PowerBoot.IsChecked, this.Left, this.Top, this.Height);
+                //LocalInfo.GetSingle().ChangedPowerBoot(PowerBoot.IsChecked, this.Left, this.Top, this.Height);
                 icon.Dispose();
                 this.Close();
             }

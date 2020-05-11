@@ -4,11 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PastNodes.NodeControl"
-             mc:Ignorable="d" 
              MinHeight="36"
-             MinWidth="350"
+             mc:Ignorable="d" 
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Margin="0,0,0,0"
              d:DesignHeight="36" d:DesignWidth="300" >
-    <Grid>
+    <Grid HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="36"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
