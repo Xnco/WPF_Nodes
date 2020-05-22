@@ -52,6 +52,22 @@ namespace WpfApp1
             }
         }
 
+        public string XmlPath
+        {
+            get { return path; }
+        }
+
+        public bool GetXmlBytes(out byte[] data)
+        {
+            data = null;
+            if (File.Exists(path))
+            {
+                data = File.ReadAllBytes(path);
+                return true;
+            }
+            return false;
+        }
+
         public void LoadXML()
         {
             if (!File.Exists(path))
@@ -87,6 +103,28 @@ namespace WpfApp1
             LoadXML(path);
         }
 
+        public void LoadXML(byte[] data)
+        {
+            string xmlStr = System.Text.Encoding.Default.GetString(data);
+            if (string.IsNullOrEmpty(xmlStr))
+            {
+                LoadXmlByString(xmlStr);
+            }
+        }
+
+        public void LoadXMLAndCreateCache(byte[] data)
+        {
+            string cachePath = dir + "Cache.txt";
+            if (File.Exists(cachePath))
+            {
+                // 缓存文件已存在
+                File.WriteAllBytes(dir + "Cache_" + DateTime.Now.ToString() + ".txt", File.ReadAllBytes(cachePath));
+            }
+            File.WriteAllBytes(cachePath, data);
+
+            LoadXML(data);
+        }
+
         public void LoadXML(string path)
         {
             this.path = path;
@@ -106,7 +144,19 @@ namespace WpfApp1
             // 读取所有任务并生成 
             XmlDocument xml = new XmlDocument();
             xml.Load(path);
+            CreateTask(xml);
+        }
 
+        public void LoadXmlByString(string xmlStr)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(xmlStr);
+
+            CreateTask(xml);
+        }
+
+        private void CreateTask(XmlDocument xml)
+        {
             XmlNode root = xml.SelectSingleNode("Nodes");
 
             XmlNodeList tasks = root.SelectNodes("Task");
